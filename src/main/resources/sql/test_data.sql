@@ -1,0 +1,2 @@
+INSERT INTO food (NAME, COST) VALUES ('Potato', 1);
+INSERT INTO food (NAME, COST) VALUES ('Pigeon', 10);
