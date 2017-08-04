@@ -11,7 +11,7 @@ public class TestController {
     @RequestMapping("/welcome")
     public ModelAndView welcomePage() {
         ModelAndView modelAndView = new ModelAndView("WelcomePage");
-        modelAndView.addObject("msg", "Welcome to first test page! ");
+        modelAndView.addObject("msg", "Welcome to first test page! just text for commit");
         return modelAndView;
     }
 }
