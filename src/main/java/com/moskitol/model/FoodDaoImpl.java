@@ -1,4 +1,4 @@
-package com.moskitol;
+package com.moskitol.model;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 @Transactional
 @Repository("foodDao")
-public class FoodDaoImpl implements com.moskitol.FoodDao {
+public class FoodDaoImpl implements FoodDao {
     private static final Log LOG = LogFactory.getLog(FoodDaoImpl.class);
     private SessionFactory sessionFactory;
 

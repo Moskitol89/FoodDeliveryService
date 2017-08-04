@@ -1,4 +1,4 @@
-package com.moskitol;
+package com.moskitol.model;
 
 import javax.persistence.*;
 

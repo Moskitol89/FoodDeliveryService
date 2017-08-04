@@ -1,4 +1,6 @@
-package com.moskitol;
+package com.moskitol.model;
+
+import com.moskitol.model.Food;
 
 import java.util.List;
 
