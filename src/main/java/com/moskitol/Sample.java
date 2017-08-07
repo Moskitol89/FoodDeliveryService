@@ -1,7 +1,7 @@
 package com.moskitol;
 
 import com.moskitol.model.Food;
-import com.moskitol.model.FoodDao;
+import com.moskitol.dao.FoodDao;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.util.List;

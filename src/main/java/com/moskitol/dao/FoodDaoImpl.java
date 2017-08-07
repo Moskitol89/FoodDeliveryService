@@ -1,5 +1,6 @@
-package com.moskitol.model;
+package com.moskitol.dao;
 
+import com.moskitol.model.Food;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
