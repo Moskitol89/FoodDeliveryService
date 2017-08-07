@@ -1,0 +1,1 @@
+Current exception: Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.moskitol.service.FoodService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
