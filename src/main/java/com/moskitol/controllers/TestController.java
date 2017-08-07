@@ -14,8 +14,12 @@ import java.util.List;
 @Controller
 public class TestController {
 
+    private final FoodService foodService;
+
     @Autowired
-    private FoodService foodService;
+    public TestController(FoodService foodService) {
+        this.foodService = foodService;
+    }
 
     @RequestMapping(value = "/welcome")
     public ModelAndView welcomePage() {
@@ -23,6 +27,7 @@ public class TestController {
         modelAndView.addObject("msg", "Welcome to first test page! just text for commit");
         List<Food> foodList = foodService.findAll();
         modelAndView.addObject("foodList",foodList);
+        modelAndView.addObject("food1Name",foodList.get(0).getName());
         return modelAndView;
     }
 }

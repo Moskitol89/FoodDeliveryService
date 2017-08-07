@@ -7,17 +7,23 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-    <title>Welcome</title>
-</head>
-<body>
-    <h1>First test page</h1>
-    <h2>${msg}</h2>
+<h1>List of food</h1>
+<p>Here you can see the list of the food.</p>
+<table border="1px" cellpadding="0" cellspacing="0" >
+    <thead>
+    <tr>
+        <th width="10%">id</th><th width="15%">name</th><th width="10%">cost</th>
+    </tr>
+    </thead>
+    <tbody>
     <c:forEach var="food" items="${foodList}">
-        <td>${food.id}</td>
-        <td>${food.name}</td>
-        <td>${food.cost}</td>
+        <tr>
+            <td>${food.id}</td>
+            <td>${food.name}</td>
+            <td>${food.cost}</td>
+        </tr>
     </c:forEach>
-</body>
-</html>
+    </tbody>
+    <h4>just for tests: ${food1Name}</h4>
+</table>
+

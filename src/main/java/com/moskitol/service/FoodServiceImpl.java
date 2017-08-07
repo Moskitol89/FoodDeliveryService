@@ -8,12 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service("foodService")
 @Transactional
 public class FoodServiceImpl implements FoodService {
 
+    private final FoodDao foodDao;
+
     @Autowired
-    private FoodDao foodDao;
+    public FoodServiceImpl(FoodDao foodDao) {
+        this.foodDao = foodDao;
+    }
 
     public List<Food> findAll() {
         return foodDao.findAll();
