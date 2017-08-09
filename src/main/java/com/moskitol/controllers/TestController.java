@@ -21,13 +21,11 @@ public class TestController {
         this.foodService = foodService;
     }
 
-    @RequestMapping(value = "/welcome")
-    public ModelAndView welcomePage() {
-        ModelAndView modelAndView = new ModelAndView("WelcomePage");
-        modelAndView.addObject("msg", "Welcome to first test page! just text for commit");
+    @RequestMapping(value = "/foodList.html")
+    public ModelAndView foodList() {
         List<Food> foodList = foodService.findAll();
+        ModelAndView modelAndView = new ModelAndView("foodList");
         modelAndView.addObject("foodList",foodList);
-        modelAndView.addObject("food1Name",foodList.get(0).getName());
         return modelAndView;
     }
 }

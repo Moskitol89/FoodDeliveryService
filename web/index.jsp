@@ -11,6 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <h1>Welcome to food delivery service by Moskitol</h1>
+     <a href="/foodList.html">show list of food</a>
   </body>
 </html>
