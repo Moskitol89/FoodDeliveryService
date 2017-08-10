@@ -17,18 +17,21 @@ public class FoodDaoImpl implements FoodDao {
 
     @Transactional(readOnly = true)
     public List<Food> findAll() {
-        return sessionFactory.getCurrentSession().createQuery("From Food c").list();
+        return sessionFactory.getCurrentSession().createQuery("From Food f").list();
     }
 
     public Food findById(int id) {
-        return null;
+        return (Food) sessionFactory.getCurrentSession().get(Food.class, id);
     }
 
-    public Food save(Food food) {
-        return null;
+    public void save(Food food) {
+        sessionFactory.getCurrentSession().saveOrUpdate(food);
+        LOG.info("Food save with id: " + food.getId());
     }
 
-    public void delete(Food food) {
+    public void delete(int id) {
+        Food food = findById(id);
+        if (food != null) sessionFactory.getCurrentSession().delete(food);
     }
 
     public SessionFactory getSessionFactory() {

@@ -8,10 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Home page</title>
   </head>
   <body>
     <h1>Welcome to food delivery service by Moskitol</h1>
-     <a href="/foodList.html">show list of food</a>
+    <h3>${msg}</h3>
+    <a href="${pageContext.request.contextPath}/food/foodList.html">show list of food</a>
+    <br>
+    <a href="${pageContext.request.contextPath}/food/add.html">add new food</a>
   </body>
 </html>

@@ -17,7 +17,7 @@
     <table border="1px" cellpadding="0" cellspacing="0" >
         <thead>
         <tr>
-            <th width="10%">id</th><th width="15%">name</th><th width="10%">cost</th>
+            <th width="10%">id</th><th width="15%">name</th><th width="10%">cost</th><th width="10%">actions</th>
         </tr>
         </thead>
         <tbody>
@@ -26,9 +26,14 @@
                 <td>${food.id}</td>
                 <td>${food.name}</td>
                 <td>${food.cost}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/food/edit/${food.id}.html">Edit</a>
+                    <a href="${pageContext.request.contextPath}/food/delete/${food.id}.html">Delete</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    <a href="${pageContext.request.contextPath}/index.html">Home page.</a>
 </body>
 </html>

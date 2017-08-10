@@ -24,14 +24,12 @@ public class FoodServiceImpl implements FoodService {
     }
 
     public Food findById(int id) {
-        return null;
+        return foodDao.findById(id);
     }
 
-    public Food save(Food food) {
-        return null;
+    public void save(Food food) {
+        foodDao.save(food);
     }
 
-    public void delete(Food food) {
-
-    }
+    public void delete(int id) { foodDao.delete(id);}
 }
