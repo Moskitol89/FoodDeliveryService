@@ -15,12 +15,12 @@ import java.util.List;
 
 @EnableWebMvc
 @Controller
-public class TestController {
+public class FoodController {
 
     private final FoodService foodService;
 
     @Autowired
-    public TestController(FoodService foodService) {
+    public FoodController(FoodService foodService) {
         this.foodService = foodService;
     }
 
@@ -59,15 +59,16 @@ public class TestController {
     public ModelAndView editFood(@ModelAttribute Food food, @PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
         foodService.save(food);
-        modelAndView.addObject("msg","Food was successfully edit");
+        modelAndView.addObject("msg","Food was successfully edit. id:" + id);
         return modelAndView;
     }
 
     @RequestMapping(value = "/food/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteFood(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
+        String deletedFoodName = foodService.findById(id).getName();
         foodService.delete(id);
-        modelAndView.addObject("msg","Food was successfully deleted");
+        modelAndView.addObject("msg","Food was successfully deleted: " + deletedFoodName);
         return modelAndView;
     }
 }
