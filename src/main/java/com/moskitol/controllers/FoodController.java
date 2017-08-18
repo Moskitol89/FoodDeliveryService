@@ -3,6 +3,7 @@ package com.moskitol.controllers;
 import com.moskitol.model.Food;
 import com.moskitol.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.util.List;
 
 @EnableWebMvc
+@EnableWebSecurity
 @Controller
 public class FoodController {
 
