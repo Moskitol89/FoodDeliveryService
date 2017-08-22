@@ -10,6 +10,7 @@ http://www.springframework.org/schema/mvc
 
     <mvc:resources mapping="/resources/**" location="/WEB-INF/"/>
     <context:component-scan base-package="com.moskitol.controllers"/>
+    <context:annotation-config/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
