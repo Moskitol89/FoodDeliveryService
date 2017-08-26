@@ -72,4 +72,5 @@ public class FoodController {
         modelAndView.addObject("msg","Food was successfully deleted: " + deletedFoodName);
         return modelAndView;
     }
+
 }

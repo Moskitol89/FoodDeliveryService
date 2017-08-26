@@ -13,13 +13,6 @@
 <p>username: <b>admin</b>, password: <b>pass</b></p>
 <p>username: <b>user2</b>, password: <b>2222</b></p>
 
-<c:if test="${not empty param.login_error}">
-  <span style="color: red; ">
-    Your login attempt was not successful, try again.<br/><br/>
-    Reason: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
-  </span>
-</c:if>
-
 <form name="frm" action="<c:url value='login'/>" method="post">
     <table>
         <tr> <td>User:</td> <td><input type="text" name="username"></td></tr>

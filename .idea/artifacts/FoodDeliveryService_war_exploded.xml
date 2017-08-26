@@ -24,6 +24,10 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:4.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:4.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.9.RELEASE" />
         </element>
       </element>
     </root>

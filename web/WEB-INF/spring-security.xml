@@ -7,16 +7,17 @@
                  http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-    <http>
-        <!--<intercept-url pattern="/index.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
-        <intercept-url pattern="/food/foodList.html" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/food/addFood.html" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/food/editFood.html" access="hasRole('ROLE_ADMIN')"/>
+    <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/food/edit/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/food/add.html" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/food/delete/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="login.jsp" access="hasRole('IS_AUTHENTICATED_ANONYMOUSLY')"/>
+        <intercept-url pattern="/index.html" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/food/foodList.html" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
         <form-login login-page="/login.jsp"
                     default-target-url="/index"
                     authentication-failure-url="/error403.jsp"/>
         <logout logout-url="/logout" logout-success-url="/index"/>
-        <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
         <csrf disabled="true"/>
     </http>
 
