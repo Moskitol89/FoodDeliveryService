@@ -1,2 +1,3 @@
-INSERT INTO food (NAME, COST) VALUES ('Potato', 1);
-INSERT INTO food (NAME, COST) VALUES ('Pigeon', 10);
+INSERT INTO food (NAME, COST) VALUES ('Potato', 1.25);
+INSERT INTO food (NAME, COST) VALUES ('Pigeon', 10.00);
+INSERT INTO users (USERNAME, PASSWORD) VALUES ('ilya', '123');

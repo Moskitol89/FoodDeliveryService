@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Food {
     private int id;
     private String name;
-    private int cost;
+    private float cost;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -27,11 +27,11 @@ public class Food {
         this.name = name;
     }
     @Column(name = "COST")
-    public int getCost() {
+    public float getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
 

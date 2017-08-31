@@ -12,24 +12,24 @@ import java.util.List;
 @Transactional
 public class FoodServiceImpl implements FoodService {
 
-    private final FoodDao foodDao;
+    private final FoodDao FOODDAO;
 
     @Autowired
     public FoodServiceImpl(FoodDao foodDao) {
-        this.foodDao = foodDao;
+        this.FOODDAO = foodDao;
     }
 
     public List<Food> findAll() {
-        return foodDao.findAll();
+        return FOODDAO.findAll();
     }
 
     public Food findById(int id) {
-        return foodDao.findById(id);
+        return FOODDAO.findById(id);
     }
 
     public void save(Food food) {
-        foodDao.save(food);
+        FOODDAO.save(food);
     }
 
-    public void delete(int id) { foodDao.delete(id);}
+    public void delete(int id) { FOODDAO.delete(id);}
 }
