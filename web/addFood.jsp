@@ -14,7 +14,7 @@
 <body>
 <h3>Add new food</h3>
 <p>Here you can add a new food.</p>
-<form:form method="POST" commandName="food" action="${pageContext.request.contextPath}/food/add/process.html">
+<form:form method="POST" commandName="food" action="${pageContext.request.contextPath}/admin/add/process.html">
     <table>
         <tbody>
         <tr>

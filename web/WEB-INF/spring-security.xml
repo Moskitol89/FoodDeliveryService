@@ -8,12 +8,9 @@
 
 
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/food/edit/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/food/add.html" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/food/delete/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="login.jsp" access="hasRole('IS_AUTHENTICATED_ANONYMOUSLY')"/>
         <intercept-url pattern="/index.html" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <intercept-url pattern="/food/foodList.html" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
         <form-login login-page="/login.jsp"
                     default-target-url="/index"
                     authentication-failure-url="/error403.jsp"/>
@@ -23,11 +20,11 @@
 
     <authentication-manager>
         <authentication-provider>
-            <user-service>
-                <user name="admin" password="pass" authorities="ROLE_ADMIN"/>
-                <user name="user1" password="1111" authorities="ROLE_USER"/>
-                <user name="user2" password="2222" disabled="true" authorities="ROLE_USER"/>
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+                                  users-by-username-query=
+                                          "SELECT USERNAME,PASSWORD,ENABLED FROM users WHERE USERNAME =?"
+                                  authorities-by-username-query="SELECT USERNAME,ROLE FROM users WHERE USERNAME =?"
+        />
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

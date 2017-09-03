@@ -25,7 +25,7 @@ public class FoodController {
         this.foodService = foodService;
     }
 
-    @RequestMapping(value = "/food/foodList")
+    @RequestMapping(value = "/admin/foodList")
     public ModelAndView foodList() {
         List<Food> foodList = foodService.findAll();
         ModelAndView modelAndView = new ModelAndView("foodList");
@@ -33,14 +33,14 @@ public class FoodController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/food/add")
+    @RequestMapping(value = "/admin/add")
     public ModelAndView addFoodPage() {
         ModelAndView modelAndView = new ModelAndView("addFood");
         modelAndView.addObject("food",new Food());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/food/add/process")
+    @RequestMapping(value = "/admin/add/process")
     public ModelAndView addFood(@ModelAttribute Food food) {
         ModelAndView modelAndView = new ModelAndView("home");
         foodService.save(food);
@@ -48,7 +48,7 @@ public class FoodController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/food/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editFoodPage(@PathVariable Integer id){
         ModelAndView modelAndView = new ModelAndView("editFood");
         Food food = foodService.findById(id);
@@ -56,7 +56,7 @@ public class FoodController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/food/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.POST)
     public ModelAndView editFood(@ModelAttribute Food food, @PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
         foodService.save(food);
@@ -64,7 +64,7 @@ public class FoodController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/food/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteFood(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
         String deletedFoodName = foodService.findById(id).getName();

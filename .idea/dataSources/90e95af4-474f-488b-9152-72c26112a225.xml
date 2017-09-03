@@ -57,16 +57,26 @@
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="16" name="ROLE">
+    <column id="24" parent="16" name="ENABLED">
       <Position>4</Position>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="25" parent="16" name="ROLE">
+      <Position>5</Position>
       <DataType>varchar(15)|0</DataType>
       <DefaultExpression>&apos;ROLE_USER&apos;</DefaultExpression>
     </column>
-    <column id="25" parent="16" name="PHONE_NUMBER">
-      <Position>5</Position>
+    <column id="26" parent="16" name="PHONE_NUMBER">
+      <Position>6</Position>
       <DataType>mediumtext|0</DataType>
     </column>
-    <key id="26" parent="16" name="PRIMARY">
+    <column id="27" parent="16" name="ADDRESS">
+      <Position>7</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <key id="28" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
