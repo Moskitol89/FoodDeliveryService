@@ -10,7 +10,7 @@ public class Food {
     private float cost;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -18,7 +18,7 @@ public class Food {
     public void setId(int id) {
         this.id = id;
     }
-    @Column(name = "NAME")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -26,7 +26,7 @@ public class Food {
     public void setName(String name) {
         this.name = name;
     }
-    @Column(name = "COST")
+    @Column(name = "cost")
     public float getCost() {
         return cost;
     }

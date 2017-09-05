@@ -3,7 +3,6 @@ package com.moskitol.controllers;
 import com.moskitol.model.Food;
 import com.moskitol.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,16 +17,16 @@ import java.util.List;
 @Controller
 public class FoodController {
 
-    private final FoodService foodService;
+    private final FoodService FOODSERVICE;
 
     @Autowired
     public FoodController(FoodService foodService) {
-        this.foodService = foodService;
+        this.FOODSERVICE = foodService;
     }
 
     @RequestMapping(value = "/admin/foodList")
     public ModelAndView foodList() {
-        List<Food> foodList = foodService.findAll();
+        List<Food> foodList = FOODSERVICE.findAll();
         ModelAndView modelAndView = new ModelAndView("foodList");
         modelAndView.addObject("foodList",foodList);
         return modelAndView;
@@ -43,7 +42,7 @@ public class FoodController {
     @RequestMapping(value = "/admin/add/process")
     public ModelAndView addFood(@ModelAttribute Food food) {
         ModelAndView modelAndView = new ModelAndView("home");
-        foodService.save(food);
+        FOODSERVICE.save(food);
         modelAndView.addObject("msg","Food was successfully added : " + food.getName());
         return modelAndView;
     }
@@ -51,7 +50,7 @@ public class FoodController {
     @RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editFoodPage(@PathVariable Integer id){
         ModelAndView modelAndView = new ModelAndView("editFood");
-        Food food = foodService.findById(id);
+        Food food = FOODSERVICE.findById(id);
         modelAndView.addObject("food",food);
         return modelAndView;
     }
@@ -59,7 +58,7 @@ public class FoodController {
     @RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.POST)
     public ModelAndView editFood(@ModelAttribute Food food, @PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
-        foodService.save(food);
+        FOODSERVICE.save(food);
         modelAndView.addObject("msg","Food was successfully edit. id:" + id);
         return modelAndView;
     }
@@ -67,8 +66,8 @@ public class FoodController {
     @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteFood(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
-        String deletedFoodName = foodService.findById(id).getName();
-        foodService.delete(id);
+        String deletedFoodName = FOODSERVICE.findById(id).getName();
+        FOODSERVICE.delete(id);
         modelAndView.addObject("msg","Food was successfully deleted: " + deletedFoodName);
         return modelAndView;
     }
