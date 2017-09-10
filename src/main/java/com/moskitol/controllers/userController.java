@@ -39,7 +39,7 @@ public class userController {
 
     @RequestMapping(value = "/admin/editUser/{id}", method = RequestMethod.POST)
     public ModelAndView editFood(@ModelAttribute User user, @PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("admin/home");
         USERSERVICE.save(user);
         modelAndView.addObject("msg","User was successfully edit. username:" + user.getUsername());
         return modelAndView;
@@ -47,7 +47,7 @@ public class userController {
 
     @RequestMapping(value = "/admin/deleteUser/{id}", method = RequestMethod.GET)
     public ModelAndView deleteFood(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("admin/home");
         String deletedUsername = USERSERVICE.findById(id).getUsername();
         USERSERVICE.delete(id);
         modelAndView.addObject("msg","User was successfully deleted: " + deletedUsername);

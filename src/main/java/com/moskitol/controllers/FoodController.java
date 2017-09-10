@@ -41,7 +41,7 @@ public class FoodController {
 
     @RequestMapping(value = "/admin/add/process")
     public ModelAndView addFood(@ModelAttribute Food food) {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("admin/home");
         FOODSERVICE.save(food);
         modelAndView.addObject("msg","Food was successfully added : " + food.getName());
         return modelAndView;
@@ -57,7 +57,7 @@ public class FoodController {
 
     @RequestMapping(value = "/admin/editFood/{id}", method = RequestMethod.POST)
     public ModelAndView editFood(@ModelAttribute Food food, @PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("admin/home");
         FOODSERVICE.save(food);
         modelAndView.addObject("msg","Food was successfully edit. id:" + id);
         return modelAndView;
@@ -65,7 +65,7 @@ public class FoodController {
 
     @RequestMapping(value = "/admin/deleteFood/{id}", method = RequestMethod.GET)
     public ModelAndView deleteFood(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("admin/home");
         String deletedFoodName = FOODSERVICE.findById(id).getName();
         FOODSERVICE.delete(id);
         modelAndView.addObject("msg","Food was successfully deleted: " + deletedFoodName);
