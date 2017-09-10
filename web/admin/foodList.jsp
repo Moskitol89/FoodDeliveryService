@@ -27,8 +27,8 @@
                 <td>${food.name}</td>
                 <td>${food.cost}</td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/admin/edit/${food.id}.html">Edit</a>
-                    <a href="${pageContext.request.contextPath}/admin/delete/${food.id}.html">Delete</a>
+                    <a href="${pageContext.request.contextPath}/admin/editFood/${food.id}.html">Edit</a>
+                    <a href="${pageContext.request.contextPath}/admin/deleteFood/${food.id}.html">Delete</a>
                 </td>
             </tr>
         </c:forEach>

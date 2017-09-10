@@ -27,14 +27,14 @@ public class FoodController {
     @RequestMapping(value = "/admin/foodList")
     public ModelAndView foodList() {
         List<Food> foodList = FOODSERVICE.findAll();
-        ModelAndView modelAndView = new ModelAndView("foodList");
+        ModelAndView modelAndView = new ModelAndView("admin/foodList");
         modelAndView.addObject("foodList",foodList);
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/add")
     public ModelAndView addFoodPage() {
-        ModelAndView modelAndView = new ModelAndView("addFood");
+        ModelAndView modelAndView = new ModelAndView("admin/addFood");
         modelAndView.addObject("food",new Food());
         return modelAndView;
     }
@@ -47,15 +47,15 @@ public class FoodController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/editFood/{id}", method = RequestMethod.GET)
     public ModelAndView editFoodPage(@PathVariable Integer id){
-        ModelAndView modelAndView = new ModelAndView("editFood");
+        ModelAndView modelAndView = new ModelAndView("admin/editFood");
         Food food = FOODSERVICE.findById(id);
         modelAndView.addObject("food",food);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/editFood/{id}", method = RequestMethod.POST)
     public ModelAndView editFood(@ModelAttribute Food food, @PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
         FOODSERVICE.save(food);
@@ -63,7 +63,7 @@ public class FoodController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/deleteFood/{id}", method = RequestMethod.GET)
     public ModelAndView deleteFood(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
         String deletedFoodName = FOODSERVICE.findById(id).getName();

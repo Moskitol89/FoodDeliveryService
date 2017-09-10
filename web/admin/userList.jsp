@@ -14,6 +14,7 @@
 <body>
 <h1>List of users</h1>
 <p>Here you can see the list of users.</p>
+<br><p>For searching please use ctrl+f</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
     <thead>
     <tr>
@@ -33,8 +34,8 @@
             <td>${user.address}</td>
             <td>${user.enabled}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/admin/edit/${user.id}.html">Edit</a>
-                <a href="${pageContext.request.contextPath}/admin/delete/${user.id}.html">Delete</a>
+                <a href="${pageContext.request.contextPath}/admin/editUser/${user.id}.html">Edit</a>
+                <a href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}.html">Delete</a>
             </td>
         </tr>
     </c:forEach>
