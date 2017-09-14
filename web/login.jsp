@@ -4,14 +4,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Title Login Page</title>
+    <title>Login Page</title>
 </head>
 <body>
 <h1>Login page</h1>
-<p>Valid users:
-<p>username: <b>user1</b>, password: <b>1111</b></p>
-<p>username: <b>admin</b>, password: <b>pass</b></p>
-<p>username: <b>user2</b>, password: <b>2222</b></p>
 
 <form name="frm" action="<c:url value='login'/>" method="post">
     <table>
@@ -22,9 +18,8 @@
         <tr><td colspan="2"><input name="submit" type="submit"></td></tr>
         <tr><td colspan="2"><input name="reset" type="reset"></td></tr>
     </table>
-
 </form>
-
+<a href="registration.html">Registration</a>
 </body>
 
 </html>

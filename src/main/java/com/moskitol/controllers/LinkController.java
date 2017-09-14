@@ -19,6 +19,10 @@ public class LinkController {
     @RequestMapping(value = "/admin/home")
     public ModelAndView adminHome() {
         return new ModelAndView("admin/home");
+    }
 
+    @RequestMapping(value = "login")
+    public ModelAndView login(){
+        return new ModelAndView("login");
     }
 }

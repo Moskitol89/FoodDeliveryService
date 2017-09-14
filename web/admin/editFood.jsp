@@ -14,7 +14,7 @@
 <body>
 <h1>Edit food page</h1>
 <p>Here you can edit the existing food.</p>
-<form:form method="POST" commandName="food" action="${pageContext.request.contextPath}/admin/edit/${food.id}.html">
+<form:form method="POST" commandName="food" action="${pageContext.request.contextPath}/admin/editFood/${food.id}.html">
     <table>
         <tbody>
         <tr>

@@ -53,4 +53,22 @@ public class userController {
         modelAndView.addObject("msg","User was successfully deleted: " + deletedUsername);
         return modelAndView;
     }
+
+    @RequestMapping(value = "registration")
+    public ModelAndView addFoodPage() {
+        ModelAndView modelAndView = new ModelAndView("registration");
+        modelAndView.addObject("user",new User());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "registration/process")
+    public ModelAndView registration(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView("registrationComplete");
+        user.setRole("ROLE_USER");
+        user.setEnabled(true);
+        USERSERVICE.save(user);
+        modelAndView.addObject("msg","User successfully registered : " + user.getUsername());
+        return modelAndView;
+    }
+
 }
