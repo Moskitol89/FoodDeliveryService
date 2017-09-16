@@ -21,7 +21,7 @@ public class LinkController {
         return new ModelAndView("admin/home");
     }
 
-    @RequestMapping(value = "login")
+    @RequestMapping(value = "/login")
     public ModelAndView login(){
         return new ModelAndView("login");
     }

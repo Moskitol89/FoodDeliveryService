@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Error 403</title>
+    <title>Access denied</title>
 </head>
 <body>
-    <h2>Access denied</h2>
+    <h2>${msg}</h2>
+    <a href="${pageContext.request.contextPath}/index.html">go to main page</a>
 </body>
 </html>
