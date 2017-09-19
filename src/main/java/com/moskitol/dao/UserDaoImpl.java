@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User findById(int id) {
-        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+        return sessionFactory.getCurrentSession().get(User.class, id);
     }
 
     public void save(User user) {

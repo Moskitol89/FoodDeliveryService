@@ -1,9 +1,11 @@
 package com.moskitol.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
     private int id;
     private String username;
@@ -14,6 +16,7 @@ public class User {
     private boolean enabled;
     private String firstName;
     private String lastName;
+    private Set<Order> orders = new HashSet<Order>();
 
     @Column(name = "address")
     public String getAddress() {
@@ -104,5 +107,22 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        order.setUser(this);
+        getOrders().add(order);
+    }
+
+    public void removeOrder(Order order) {
+        getOrders().remove(order);
     }
 }

@@ -21,7 +21,7 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     public Food findById(int id) {
-        return (Food) sessionFactory.getCurrentSession().get(Food.class, id);
+        return sessionFactory.getCurrentSession().get(Food.class, id);
     }
 
     public void save(Food food) {
