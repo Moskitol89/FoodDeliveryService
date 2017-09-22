@@ -8,6 +8,8 @@ public class Food {
     private int id;
     private String name;
     private float cost;
+    private Order order;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,6 +36,15 @@ public class Food {
     public void setCost(float cost) {
         this.cost = cost;
     }
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     @Override
     public String toString() {
@@ -41,6 +52,7 @@ public class Food {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
+                ", order=" + order +
                 '}';
     }
 }

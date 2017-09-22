@@ -1,6 +1,8 @@
 package com.moskitol.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -8,6 +10,7 @@ public class Order {
     private int id;
     private double amount;
     private User user;
+    private Set<Food> foods = new HashSet<Food>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +39,23 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+    @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL)
+    public Set<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
+    }
+
+    public void addFood(Food food) {
+        food.setOrder(this);
+        getFoods().add(food);
+    }
+
+    public void removeFood(Food food) {
+        getFoods().remove(food);
+    }
 
     @Override
     public String toString() {
@@ -43,6 +63,7 @@ public class Order {
                 "id=" + id +
                 ", amount=" + amount +
                 ", user=" + user +
+                ", foods=" + foods +
                 '}';
     }
 }
