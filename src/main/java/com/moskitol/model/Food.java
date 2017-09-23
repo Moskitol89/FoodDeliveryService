@@ -1,6 +1,8 @@
 package com.moskitol.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "food")
@@ -8,7 +10,7 @@ public class Food {
     private int id;
     private String name;
     private float cost;
-    private Order order;
+    private Set<Order> orders = new HashSet<Order>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,23 +38,23 @@ public class Food {
     public void setCost(float cost) {
         this.cost = cost;
     }
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    public Order getOrder() {
-        return order;
+    @ManyToMany
+    @JoinTable(name = "ORDER_FOOD_DETAIL",joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns =
+    @JoinColumn(name = "order_id"))
+    public Set<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
-
     @Override
     public String toString() {
         return "Food{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
-                ", order=" + order +
+                ", orders=" + orders +
                 '}';
     }
 }

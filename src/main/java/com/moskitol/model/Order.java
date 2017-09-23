@@ -39,7 +39,10 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
-    @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL)
+
+    @ManyToMany
+    @JoinTable(name = "ORDER_FOOD_DETAIL", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns =
+    @JoinColumn(name = "food_id"))
     public Set<Food> getFoods() {
         return foods;
     }

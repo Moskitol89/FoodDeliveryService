@@ -3,8 +3,7 @@ CREATE TABLE FOOD (
   name VARCHAR(255) NOT NULL ,
   cost FLOAT NOT NULL,
   order_id INT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (order_id) REFERENCES ORDERS(id)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE USER (
@@ -26,4 +25,12 @@ CREATE TABLE ORDERS (
   amount DOUBLE,
   FOREIGN KEY (user_id) REFERENCES USER(id),
   PRIMARY KEY (id)
+);
+
+CREATE TABLE ORDER_FOOD_DETAIL (
+  order_id INT NOT NULL ,
+  food_id INT NOT NULL ,
+  PRIMARY KEY (order_id, food_id) ,
+  FOREIGN KEY (order_id) REFERENCES ORDERS(id),
+  FOREIGN KEY (food_id) REFERENCES FOOD(id)
 );
