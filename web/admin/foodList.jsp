@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>List of food</h1>
-    <p>Here you can see the list of the food.</p>
+    <p>Here you can see list of the food.</p>
     <table border="1px" cellpadding="0" cellspacing="0" >
         <thead>
         <tr>

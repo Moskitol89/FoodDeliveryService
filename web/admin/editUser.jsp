@@ -55,6 +55,6 @@
     </table>
 </form:form>
 
-<p><a href="${pageContext.request.contextPath}/index.html">home</a></p>
+<p><a href="${pageContext.request.contextPath}/index">home</a></p>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.moskitol.controllers;
 
-import com.moskitol.model.Food;
 import com.moskitol.model.User;
 import com.moskitol.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -13,11 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class userController {
+public class UserController {
 
     private final UserService USERSERVICE;
 
-    public userController(UserService userservice) {
+    public UserController(UserService userservice) {
         USERSERVICE = userservice;
     }
 
@@ -54,14 +53,14 @@ public class userController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "registration")
+    @RequestMapping(value = "/registration")
     public ModelAndView addFoodPage() {
         ModelAndView modelAndView = new ModelAndView("registration");
         modelAndView.addObject("user",new User());
         return modelAndView;
     }
 
-    @RequestMapping(value = "registration/process")
+    @RequestMapping(value = "/registration/process")
     public ModelAndView registration(@ModelAttribute User user) {
         ModelAndView modelAndView = new ModelAndView("registrationComplete");
         user.setRole("ROLE_USER");

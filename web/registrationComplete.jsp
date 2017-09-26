@@ -12,6 +12,6 @@
 </head>
 <body>
     <h3>${msg}</h3>
-    <a href="${pageContext.request.contextPath}/login.html">go to login page</a>
+    <a href="${pageContext.request.contextPath}/login">go to login page</a>
 </body>
 </html>

@@ -19,7 +19,7 @@
         <tr><td colspan="2"><input name="reset" type="reset"></td></tr>
     </table>
 </form>
-<a href="registration.html">Registration</a>
+<a href="registration">Registration</a>
 </body>
 
 </html>

@@ -12,6 +12,6 @@
 </head>
 <body>
     <h2>${msg}</h2>
-    <a href="${pageContext.request.contextPath}/index.html">go to main page</a>
+    <a href="${pageContext.request.contextPath}/index">go to main page</a>
 </body>
 </html>

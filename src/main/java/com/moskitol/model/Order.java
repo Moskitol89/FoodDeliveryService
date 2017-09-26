@@ -52,7 +52,6 @@ public class Order {
     }
 
     public void addFood(Food food) {
-        food.setOrder(this);
         getFoods().add(food);
     }
 

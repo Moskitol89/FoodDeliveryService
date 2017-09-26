@@ -24,6 +24,7 @@ public class FoodController {
         this.FOODSERVICE = foodService;
     }
 
+    //admin
     @RequestMapping(value = "/admin/foodList")
     public ModelAndView foodList() {
         List<Food> foodList = FOODSERVICE.findAll();
@@ -72,4 +73,13 @@ public class FoodController {
         return modelAndView;
     }
 
+    //user
+
+    @RequestMapping(value = "/shop/all")
+    public ModelAndView shopFoodList() {
+        ModelAndView modelAndView = new ModelAndView("shop/allGoods");
+        List<Food> foodList = FOODSERVICE.findAll();
+        modelAndView.addObject("foodList",foodList);
+        return modelAndView;
+    }
 }

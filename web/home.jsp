@@ -12,6 +12,8 @@
 </head>
 <body>
     <h1>Welcome to food delivery service by Moskitol</h1>
-    <a href="${pageContext.request.contextPath}/admin/home.html">for admins</a>
+    <a href="${pageContext.request.contextPath}/admin/home">for admins</a>
+    <br>
+    <a href="${pageContext.request.contextPath}/shop/all">go to the store</a>
 </body>
 </html>

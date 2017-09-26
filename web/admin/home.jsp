@@ -13,10 +13,10 @@
   <body>
     <h1>Welcome to food delivery service by Moskitol</h1>
     <h3>${msg}</h3>
-    <a href="${pageContext.request.contextPath}/admin/foodList.html">show list of food</a>
+    <a href="${pageContext.request.contextPath}/admin/foodList">show list of food</a>
     <br>
-    <a href="${pageContext.request.contextPath}/admin/add.html">add new food</a>
+    <a href="${pageContext.request.contextPath}/admin/add">add new food</a>
     <br>
-    <a href="${pageContext.request.contextPath}/admin/userList.html">show list of users</a>
+    <a href="${pageContext.request.contextPath}/admin/userList">show list of users</a>
   </body>
 </html>
