@@ -15,7 +15,7 @@
     <h2>All goods</h2>
     <ul>
         <c:forEach var="food" items="${foodList}">
-            <li>${food.name} - price: ${food.cost} - <a href="/">add to cart</a> </li>
+            <li>${food.name} - price: ${food.cost} - <a href="${}">add to cart</a> </li>
         </c:forEach>
     </ul>
 </body>

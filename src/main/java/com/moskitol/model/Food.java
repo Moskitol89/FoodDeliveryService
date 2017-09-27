@@ -10,7 +10,7 @@ public class Food {
     private int id;
     private String name;
     private float cost;
-    private Set<Order> orders = new HashSet<Order>();
+    private Set<ShoppingBasket> shoppingBaskets = new HashSet<ShoppingBasket>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,22 +39,23 @@ public class Food {
         this.cost = cost;
     }
     @ManyToMany
-    @JoinTable(name = "ORDER_FOOD_DETAIL",joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns =
-    @JoinColumn(name = "order_id"))
-    public Set<Order> getOrders() {
-        return orders;
+    @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns =
+    @JoinColumn(name = "basket_id"))
+    public Set<ShoppingBasket> getShoppingBaskets() {
+        return shoppingBaskets;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setShoppingBaskets(Set<ShoppingBasket> shoppingBaskets) {
+        this.shoppingBaskets = shoppingBaskets;
     }
+
     @Override
     public String toString() {
         return "Food{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
-                ", orders=" + orders +
+                ", shoppingBaskets=" + shoppingBaskets +
                 '}';
     }
 }

@@ -1,8 +1,6 @@
 package com.moskitol.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -10,7 +8,7 @@ public class Order {
     private int id;
     private double amount;
     private User user;
-    private Set<Food> foods = new HashSet<Food>();
+    private ShoppingBasket basket;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,24 +37,14 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @ManyToMany
-    @JoinTable(name = "ORDER_FOOD_DETAIL", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns =
-    @JoinColumn(name = "food_id"))
-    public Set<Food> getFoods() {
-        return foods;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "basket_id")
+    public ShoppingBasket getBasket() {
+        return basket;
     }
 
-    public void setFoods(Set<Food> foods) {
-        this.foods = foods;
-    }
-
-    public void addFood(Food food) {
-        getFoods().add(food);
-    }
-
-    public void removeFood(Food food) {
-        getFoods().remove(food);
+    public void setBasket(ShoppingBasket basket) {
+        this.basket = basket;
     }
 
     @Override
@@ -65,7 +53,7 @@ public class Order {
                 "id=" + id +
                 ", amount=" + amount +
                 ", user=" + user +
-                ", foods=" + foods +
+                ", basket=" + basket +
                 '}';
     }
 }
