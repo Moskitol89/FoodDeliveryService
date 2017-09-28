@@ -39,6 +39,16 @@ public class ShoppingBasket {
         this.foods = foods;
     }
 
+    public void addFood(Food food) {
+        if(food != null) {
+            getFoods().add(food);
+        }
+    }
+
+    public void removeFood(Food food) {
+        getFoods().remove(food);
+    }
+
     @Override
     public String toString() {
         return "ShoppingBasket{" +

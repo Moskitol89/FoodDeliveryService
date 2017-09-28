@@ -37,6 +37,7 @@ public class UserDaoImpl implements UserDao {
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
     @Resource(name = "sessionFactory")
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
