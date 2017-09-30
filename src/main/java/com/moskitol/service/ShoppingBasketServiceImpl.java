@@ -1,6 +1,6 @@
 package com.moskitol.service;
 
-import com.moskitol.dao.ShoppingBasketDaoImpl;
+import com.moskitol.dao.ShoppingBasketDao;
 import com.moskitol.model.ShoppingBasket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,11 @@ import java.util.List;
 @Transactional
 public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 
-    private final ShoppingBasketDaoImpl BASKETDAO;
+    private final ShoppingBasketDao BASKETDAO;
 
     @Autowired
-    public ShoppingBasketServiceImpl(ShoppingBasketDaoImpl basketdao) {
-        BASKETDAO = basketdao;
+    public ShoppingBasketServiceImpl(ShoppingBasketDao basketDao) {
+        BASKETDAO = basketDao;
     }
 
     public List findAll() {

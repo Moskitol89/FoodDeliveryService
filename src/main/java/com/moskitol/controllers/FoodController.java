@@ -1,7 +1,9 @@
 package com.moskitol.controllers;
 
 import com.moskitol.model.Food;
+import com.moskitol.model.ShoppingBasket;
 import com.moskitol.service.FoodService;
+import com.moskitol.service.ShoppingBasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,11 +20,13 @@ import java.util.List;
 public class FoodController {
 
     private final FoodService FOODSERVICE;
-
+    private final ShoppingBasketService BASKETSERVICE;
     @Autowired
-    public FoodController(FoodService foodService) {
-        this.FOODSERVICE = foodService;
+    public FoodController(FoodService foodservice, ShoppingBasketService basketService) {
+        FOODSERVICE = foodservice;
+        BASKETSERVICE = basketService;
     }
+
 
     //admin
     @RequestMapping(value = "/admin/foodList")
@@ -75,11 +79,21 @@ public class FoodController {
 
     //user
 
-    @RequestMapping(value = "/shop/all")
+    @RequestMapping(value = "/shop/all", method = RequestMethod.GET)
     public ModelAndView shopFoodList() {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
         List<Food> foodList = FOODSERVICE.findAll();
         modelAndView.addObject("foodList",foodList);
+        return modelAndView;
+    }
+    //TODO food to cart logic. One basket for user's session. add foods to cart.
+    @RequestMapping(value = "/shop/all", method = RequestMethod.POST)
+    public ModelAndView addFoodToBasket(@ModelAttribute Food foodToBasket) {
+        ModelAndView modelAndView = new ModelAndView("shop/allGoods");
+        ShoppingBasket basket = new ShoppingBasket();
+        Food foodById = FOODSERVICE.findById(foodToBasket.getId());
+        basket.addFood(foodById);
+        modelAndView.addObject("msg", foodById.getName() +" added to your cart");
         return modelAndView;
     }
 }
