@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "SHOPPING_BASKET")
-public class ShoppingBasket {
+public class Cart {
     private int id;
     private Order order;
     private Set<Food> foods = new HashSet<Food>();
@@ -51,7 +51,7 @@ public class ShoppingBasket {
 
     @Override
     public String toString() {
-        return "ShoppingBasket{" +
+        return "Cart{" +
                 "id=" + id +
                 ", order=" + order +
                 ", foods=" + foods +

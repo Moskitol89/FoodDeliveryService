@@ -8,7 +8,7 @@ public class Order {
     private int id;
     private double amount;
     private User user;
-    private ShoppingBasket basket;
+    private Cart basket;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,11 +39,11 @@ public class Order {
     }
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "basket_id")
-    public ShoppingBasket getBasket() {
+    public Cart getBasket() {
         return basket;
     }
 
-    public void setBasket(ShoppingBasket basket) {
+    public void setBasket(Cart basket) {
         this.basket = basket;
     }
 

@@ -1,6 +1,6 @@
 package com.moskitol.dao;
 
-import com.moskitol.model.ShoppingBasket;
+import com.moskitol.model.Cart;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
@@ -10,25 +10,25 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 @Transactional
-@Repository("BasketDao")
-public class ShoppingBasketDaoImpl implements ShoppingBasketDao {
-    private static final Log LOG = LogFactory.getLog(ShoppingBasketDaoImpl.class);
+@Repository("CartDao")
+public class CartDaoImpl implements CartDao {
+    private static final Log LOG = LogFactory.getLog(CartDaoImpl.class);
     private SessionFactory sessionFactory;
 
     public List findAll() {
-        return sessionFactory.getCurrentSession().createQuery("FROM ShoppingBasket s").list();
+        return sessionFactory.getCurrentSession().createQuery("FROM Cart s").list();
     }
 
-    public ShoppingBasket findById(int id) {
-        return sessionFactory.getCurrentSession().get(ShoppingBasket.class, id);
+    public Cart findById(int id) {
+        return sessionFactory.getCurrentSession().get(Cart.class, id);
     }
 
     public void delete(int id) {
-        ShoppingBasket shoppingBasket = findById(id);
-        if(shoppingBasket != null) sessionFactory.getCurrentSession().delete(shoppingBasket);
+        Cart Cart = findById(id);
+        if(Cart != null) sessionFactory.getCurrentSession().delete(Cart);
     }
 
-    public void save(ShoppingBasket basket) {
+    public void save(Cart basket) {
         sessionFactory.getCurrentSession().save(basket);
         LOG.info("Shopping basket save with id: " + basket.getId());
     }

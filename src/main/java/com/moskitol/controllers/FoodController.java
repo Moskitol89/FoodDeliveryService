@@ -1,9 +1,8 @@
 package com.moskitol.controllers;
 
 import com.moskitol.model.Food;
-import com.moskitol.model.ShoppingBasket;
 import com.moskitol.service.FoodService;
-import com.moskitol.service.ShoppingBasketService;
+import com.moskitol.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,11 +19,12 @@ import java.util.List;
 public class FoodController {
 
     private final FoodService FOODSERVICE;
-    private final ShoppingBasketService BASKETSERVICE;
+    private final CartService CARTSERVICE;
+
     @Autowired
-    public FoodController(FoodService foodservice, ShoppingBasketService basketService) {
+    public FoodController(FoodService foodservice, CartService cartService) {
         FOODSERVICE = foodservice;
-        BASKETSERVICE = basketService;
+        CARTSERVICE = cartService;
     }
 
 
@@ -33,14 +33,14 @@ public class FoodController {
     public ModelAndView foodList() {
         List<Food> foodList = FOODSERVICE.findAll();
         ModelAndView modelAndView = new ModelAndView("admin/foodList");
-        modelAndView.addObject("foodList",foodList);
+        modelAndView.addObject("foodList", foodList);
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/add")
     public ModelAndView addFoodPage() {
         ModelAndView modelAndView = new ModelAndView("admin/addFood");
-        modelAndView.addObject("food",new Food());
+        modelAndView.addObject("food", new Food());
         return modelAndView;
     }
 
@@ -48,15 +48,15 @@ public class FoodController {
     public ModelAndView addFood(@ModelAttribute Food food) {
         ModelAndView modelAndView = new ModelAndView("admin/home");
         FOODSERVICE.save(food);
-        modelAndView.addObject("msg","Food was successfully added : " + food.getName());
+        modelAndView.addObject("msg", "Food was successfully added : " + food.getName());
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/editFood/{id}", method = RequestMethod.GET)
-    public ModelAndView editFoodPage(@PathVariable Integer id){
+    public ModelAndView editFoodPage(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("admin/editFood");
         Food food = FOODSERVICE.findById(id);
-        modelAndView.addObject("food",food);
+        modelAndView.addObject("food", food);
         return modelAndView;
     }
 
@@ -64,7 +64,7 @@ public class FoodController {
     public ModelAndView editFood(@ModelAttribute Food food, @PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("admin/home");
         FOODSERVICE.save(food);
-        modelAndView.addObject("msg","Food was successfully edit. id:" + id);
+        modelAndView.addObject("msg", "Food was successfully edit. id:" + id);
         return modelAndView;
     }
 
@@ -73,7 +73,7 @@ public class FoodController {
         ModelAndView modelAndView = new ModelAndView("admin/home");
         String deletedFoodName = FOODSERVICE.findById(id).getName();
         FOODSERVICE.delete(id);
-        modelAndView.addObject("msg","Food was successfully deleted: " + deletedFoodName);
+        modelAndView.addObject("msg", "Food was successfully deleted: " + deletedFoodName);
         return modelAndView;
     }
 
@@ -83,17 +83,8 @@ public class FoodController {
     public ModelAndView shopFoodList() {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
         List<Food> foodList = FOODSERVICE.findAll();
-        modelAndView.addObject("foodList",foodList);
+        modelAndView.addObject("foodList", foodList);
         return modelAndView;
     }
-    //TODO food to cart logic. One basket for user's session. add foods to cart.
-    @RequestMapping(value = "/shop/all", method = RequestMethod.POST)
-    public ModelAndView addFoodToBasket(@ModelAttribute Food foodToBasket) {
-        ModelAndView modelAndView = new ModelAndView("shop/allGoods");
-        ShoppingBasket basket = new ShoppingBasket();
-        Food foodById = FOODSERVICE.findById(foodToBasket.getId());
-        basket.addFood(foodById);
-        modelAndView.addObject("msg", foodById.getName() +" added to your cart");
-        return modelAndView;
-    }
+    //TODO food to Cart logic. One basket for user's session. add foods to Cart.
 }
