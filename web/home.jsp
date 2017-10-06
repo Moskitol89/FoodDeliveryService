@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: moskitol
@@ -12,8 +13,15 @@
 </head>
 <body>
     <h1>Welcome to food delivery service by Moskitol</h1>
-    <a href="${pageContext.request.contextPath}/admin/home">for admins</a>
+    <a href="${pageContext.request.contextPath}/login">login</a>
     <br>
-    <a href="${pageContext.request.contextPath}/shop/all">go to the store</a>
+    <security:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="${pageContext.request.contextPath}/admin/home">for admins</a>
+    </security:authorize>
+    <br>
+    <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+        <a href="${pageContext.request.contextPath}/shop/all">go to the store</a>
+    </security:authorize>
+
 </body>
 </html>
