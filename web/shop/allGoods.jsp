@@ -17,10 +17,7 @@
     <h2>All goods</h2>
     <ul>
         <c:forEach var="food" items="${foodList}">
-            <li>${food.name} - price: ${food.cost} - ${food.id}
-                <form:form method="POST" commandName="foodToBasket" action="${pageContext.request.contextPath}/shop/all.html">
-                    <%--<form:button value="${food.id}"/>--%>
-                </form:form>
+            <li>${food.name} - price: ${food.cost} - ${food.id}</li>
         </c:forEach>
     </ul>
 </body>

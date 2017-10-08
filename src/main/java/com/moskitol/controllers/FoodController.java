@@ -5,13 +5,11 @@ import com.moskitol.service.FoodService;
 import com.moskitol.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @EnableWebMvc
@@ -80,9 +78,11 @@ public class FoodController {
     //user
 
     @RequestMapping(value = "/shop/all", method = RequestMethod.GET)
-    public ModelAndView shopFoodList() {
+    public ModelAndView shopFoodList(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
         List<Food> foodList = FOODSERVICE.findAll();
+        String sessionId = session.getId();
+        modelAndView.addObject("msg",sessionId);
         modelAndView.addObject("foodList", foodList);
         return modelAndView;
     }
