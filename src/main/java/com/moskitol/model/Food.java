@@ -38,7 +38,7 @@ public class Food {
     public void setCost(float cost) {
         this.cost = cost;
     }
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns =
     @JoinColumn(name = "basket_id"))
     public Set<Cart> getCarts() {

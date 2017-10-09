@@ -1,5 +1,6 @@
 package com.moskitol.controllers;
 
+import com.moskitol.model.Cart;
 import com.moskitol.model.Food;
 import com.moskitol.service.FoodService;
 import com.moskitol.service.CartService;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @EnableWebMvc
 @Controller
+@SessionAttributes("cart")
 public class FoodController {
 
     private final FoodService FOODSERVICE;
@@ -81,10 +83,19 @@ public class FoodController {
     public ModelAndView shopFoodList(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
         List<Food> foodList = FOODSERVICE.findAll();
-        String sessionId = session.getId();
-        modelAndView.addObject("msg",sessionId);
+        session.setAttribute("cart", new Cart());
         modelAndView.addObject("foodList", foodList);
         return modelAndView;
     }
-    //TODO food to Cart logic. One basket for user's session. add foods to Cart.
+
+    @RequestMapping(value = "/shop/all", method = RequestMethod.POST)
+    public ModelAndView addToCart(HttpSession session, @RequestParam String foodId) {
+        ModelAndView modelAndView = new ModelAndView("shop/allGoods");
+        Cart cart = (Cart)session.getAttribute("cart");
+        cart.addFood(FOODSERVICE.findById(Integer.parseInt(foodId)));
+        modelAndView.addObject("msg", cart.getId() + " " + cart.getFoods());
+        List<Food> foodList = FOODSERVICE.findAll();
+        modelAndView.addObject("foodList", foodList);
+        return modelAndView;
+    }
 }
