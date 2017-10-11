@@ -5,6 +5,7 @@ import com.moskitol.model.Food;
 import com.moskitol.service.FoodService;
 import com.moskitol.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Set;
 
 @EnableWebMvc
 @Controller
@@ -78,7 +80,7 @@ public class FoodController {
     }
 
     //user
-
+    //order
     @RequestMapping(value = "/shop/all", method = RequestMethod.GET)
     public ModelAndView shopFoodList(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
@@ -93,9 +95,28 @@ public class FoodController {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
         Cart cart = (Cart)session.getAttribute("cart");
         cart.addFood(FOODSERVICE.findById(Integer.parseInt(foodId)));
+        modelAndView.addObject("username", SecurityContextHolder.getContext().getAuthentication().getName());
         modelAndView.addObject("msg", cart.getId() + " " + cart.getFoods());
         List<Food> foodList = FOODSERVICE.findAll();
         modelAndView.addObject("foodList", foodList);
+        return modelAndView;
+    }
+    @RequestMapping(value = "/shop/order", method = RequestMethod.GET)
+    public ModelAndView orderGet(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView("shop/order");
+        Cart cart = (Cart)session.getAttribute("cart");
+        Set<Food> foodSet = cart.getFoods();
+        modelAndView.addObject("foodSet",foodSet);
+        return modelAndView;
+    }
+    //TODO remove is not work
+    @RequestMapping(value = "/shop/order", method = RequestMethod.POST)
+    public ModelAndView orderPost(HttpSession session, @RequestParam String foodId) {
+        ModelAndView modelAndView = new ModelAndView("shop/order");
+        Cart cart = (Cart)session.getAttribute("cart");
+        cart.removeFood(FOODSERVICE.findById(Integer.parseInt(foodId)));
+        Set<Food> foodSet = cart.getFoods();
+        modelAndView.addObject("foodSet",foodSet);
         return modelAndView;
     }
 }
