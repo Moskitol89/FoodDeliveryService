@@ -12,6 +12,7 @@
     <title>Your order</title>
 </head>
 <body>
+    <h3>${msg}</h3>
     <ul>
         <c:forEach items="${foodSet}" var="food">
             <li>${food.name}

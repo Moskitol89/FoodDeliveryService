@@ -109,14 +109,17 @@ public class FoodController {
         modelAndView.addObject("foodSet",foodSet);
         return modelAndView;
     }
-    //TODO remove is not work
+
     @RequestMapping(value = "/shop/order", method = RequestMethod.POST)
     public ModelAndView orderPost(HttpSession session, @RequestParam String foodId) {
         ModelAndView modelAndView = new ModelAndView("shop/order");
         Cart cart = (Cart)session.getAttribute("cart");
-        cart.removeFood(FOODSERVICE.findById(Integer.parseInt(foodId)));
+        Food foodForDelete = FOODSERVICE.findById(Integer.parseInt(foodId));
+        cart.removeFood(foodForDelete);
         Set<Food> foodSet = cart.getFoods();
         modelAndView.addObject("foodSet",foodSet);
+        modelAndView.addObject("msg",foodForDelete.getName() +
+                " deleted from your shopping cart.");
         return modelAndView;
     }
 }

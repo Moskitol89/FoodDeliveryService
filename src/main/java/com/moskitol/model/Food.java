@@ -10,8 +10,8 @@ public class Food {
     private int id;
     private String name;
     private float cost;
-    private Set<Cart> Carts = new HashSet<Cart>();
-
+//    private Set<Cart> Carts = new HashSet<Cart>();
+    private Cart cart;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -38,16 +38,15 @@ public class Food {
     public void setCost(float cost) {
         this.cost = cost;
     }
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns =
-    @JoinColumn(name = "basket_id"))
-    public Set<Cart> getCarts() {
-        return Carts;
-    }
-
-    public void setCarts(Set<Cart> Carts) {
-        this.Carts = Carts;
-    }
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns =
+//    @JoinColumn(name = "basket_id"))
+//    public Set<Cart> getCarts() {
+//        return Carts;
+//    }
+//    public void setCarts(Set<Cart> Carts) {
+//        this.Carts = Carts;
+//    }
 
     @Override
     public String toString() {
@@ -55,7 +54,15 @@ public class Food {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
-                ", Carts=" + Carts +
                 '}';
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

@@ -28,9 +28,10 @@ public class Cart {
     public void setOrder(Order order) {
         this.order = order;
     }
-    @ManyToMany
-    @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "basket_id"), inverseJoinColumns =
-    @JoinColumn(name = "food_id"))
+//    @ManyToMany
+//    @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "basket_id"), inverseJoinColumns =
+//    @JoinColumn(name = "food_id"))
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, orphanRemoval = true)
     public Set<Food> getFoods() {
         return foods;
     }
@@ -46,7 +47,12 @@ public class Cart {
     }
 
     public void removeFood(Food food) {
-        getFoods().remove(food);
+        for (Food foodFromSet : new HashSet<Food>(getFoods())) {
+            if(foodFromSet.getName().equals(food.getName())) {
+                getFoods().remove(foodFromSet);
+                break;
+            }
+        }
     }
 
     @Override
