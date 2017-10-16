@@ -33,4 +33,8 @@ public class UserServiceImpl implements UserService {
     public void delete(int id) {
         USERDAO.delete(id);
     }
+
+    public User findUserByUsername(String username) {
+        return USERDAO.findUserByUsername(username);
+    }
 }

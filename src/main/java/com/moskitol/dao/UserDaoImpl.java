@@ -4,6 +4,7 @@ import com.moskitol.model.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,14 @@ public class UserDaoImpl implements UserDao {
     public void delete(int id) {
         User user = findById(id);
         if (user != null) sessionFactory.getCurrentSession().delete(user);
+    }
+
+    public User findUserByUsername(String username) {
+        for(User userFromList: findAll()) {
+            if (userFromList.getUsername().equals(username)) return userFromList;
+        }
+        LOG.error("USER NOT FOUND! returned null");
+        return null;
     }
 
     public SessionFactory getSessionFactory() {

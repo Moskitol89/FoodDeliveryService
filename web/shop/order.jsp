@@ -21,6 +21,11 @@
                 </form>
             </li>
         </c:forEach>
+            <li>
+                <form method="get" action="${pageContext.request.contextPath}/shop/confirm">
+                    <input type="submit">
+                </form>
+            </li>
     </ul>
 </body>
 </html>

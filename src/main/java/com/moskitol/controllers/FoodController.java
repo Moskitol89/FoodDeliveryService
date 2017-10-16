@@ -2,8 +2,10 @@ package com.moskitol.controllers;
 
 import com.moskitol.model.Cart;
 import com.moskitol.model.Food;
+import com.moskitol.model.User;
 import com.moskitol.service.FoodService;
 import com.moskitol.service.CartService;
+import com.moskitol.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,11 +25,13 @@ public class FoodController {
 
     private final FoodService FOODSERVICE;
     private final CartService CARTSERVICE;
+    private final UserService UsERSERVICE;
 
     @Autowired
-    public FoodController(FoodService foodservice, CartService cartService) {
+    public FoodController(FoodService foodservice, CartService cartService, UserService usERSERVICE) {
         FOODSERVICE = foodservice;
         CARTSERVICE = cartService;
+        UsERSERVICE = usERSERVICE;
     }
 
 
@@ -101,6 +106,7 @@ public class FoodController {
         modelAndView.addObject("foodList", foodList);
         return modelAndView;
     }
+
     @RequestMapping(value = "/shop/order", method = RequestMethod.GET)
     public ModelAndView orderGet(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("shop/order");
@@ -120,6 +126,33 @@ public class FoodController {
         modelAndView.addObject("foodSet",foodSet);
         modelAndView.addObject("msg",foodForDelete.getName() +
                 " deleted from your shopping cart.");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/shop/confirm", method = RequestMethod.GET)
+    public ModelAndView confirmPurchase(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView("shop/confirm");
+        User user = UsERSERVICE.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        Cart cart = (Cart) session.getAttribute("cart");
+        Set<Food> foodSet = cart.getFoods();
+        float total = 0;
+        for(Food foodFromCart : foodSet) {
+            total += foodFromCart.getCost();
+        }
+        String totalPrice = String.format("%.2f", total);
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("foodSet", foodSet);
+        modelAndView.addObject("totalPrice",totalPrice);
+        return modelAndView;
+    }
+    //TODO save order in db
+    @RequestMapping(value = "/shop/confirm", method = RequestMethod.POST)
+    public ModelAndView confirmed(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView("shop/confirmed");
+        User user = UsERSERVICE.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        Cart cart = (Cart) session.getAttribute("cart");
+        modelAndView.addObject("msg", user.getUsername() +
+                " ,your order confirmed! Please expect delivery (no). Thank for using my service.");
         return modelAndView;
     }
 }
