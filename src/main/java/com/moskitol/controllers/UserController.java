@@ -19,7 +19,7 @@ public class UserController {
     public UserController(UserService userservice) {
         USERSERVICE = userservice;
     }
-
+    //admin
     @RequestMapping(value = "/admin/userList")
     public ModelAndView userList(){
         List<User> users = USERSERVICE.findAll();
@@ -52,7 +52,7 @@ public class UserController {
         modelAndView.addObject("msg","User was successfully deleted: " + deletedUsername);
         return modelAndView;
     }
-
+    //registration
     @RequestMapping(value = "/registration")
     public ModelAndView addFoodPage() {
         ModelAndView modelAndView = new ModelAndView("registration");

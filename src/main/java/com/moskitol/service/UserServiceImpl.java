@@ -1,6 +1,7 @@
 package com.moskitol.service;
 
 import com.moskitol.dao.UserDao;
+import com.moskitol.exceptions.UserNotFoundException;
 import com.moskitol.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
         USERDAO.delete(id);
     }
 
-    public User findUserByUsername(String username) {
+    public User findUserByUsername(String username) throws UserNotFoundException {
         return USERDAO.findUserByUsername(username);
     }
 }

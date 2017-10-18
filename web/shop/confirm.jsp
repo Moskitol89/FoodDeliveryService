@@ -16,14 +16,20 @@
         <c:forEach var="foodFromCart" items="${foodSet}">
             <li>${foodFromCart.name} - price: ${foodFromCart.cost}</li>
         </c:forEach>
+        <br>
+        <li>Total price : ${totalPrice}</li>
         <li>Your name : ${user.firstName}</li>
         <li>Your phone number : ${user.phoneNumber}</li>
-        <li>Your address for deliver : ${user.address}</li>
-        <li>Total price : ${totalPrice}</li>
         <li>
-            <form method="post" action="${pageContext.request.contextPath}/shop/confirm">
-                <input type="submit" value="confirm">
-            </form>
+        <form method="post" action="${pageContext.request.contextPath}/shop/confirm">
+            Your address for deliver :
+            <br>
+            <label>
+                <textarea rows="5" cols="45" name="addressTextArea">${user.address}</textarea>
+            </label>
+            <br>
+            <input type="submit" value="confirm">
+        </form>
         </li>
     </ul>
 </body>

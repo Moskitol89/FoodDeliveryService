@@ -23,7 +23,7 @@
         </c:forEach>
             <li>
                 <form method="get" action="${pageContext.request.contextPath}/shop/confirm">
-                    <input type="submit">
+                    <input type="submit" value="confirm">
                 </form>
             </li>
     </ul>

@@ -1,5 +1,6 @@
 package com.moskitol.dao;
 
+import com.moskitol.exceptions.UserNotFoundException;
 import com.moskitol.model.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,12 +36,12 @@ public class UserDaoImpl implements UserDao {
         if (user != null) sessionFactory.getCurrentSession().delete(user);
     }
 
-    public User findUserByUsername(String username) {
+    public User findUserByUsername(String username) throws UserNotFoundException {
         for(User userFromList: findAll()) {
             if (userFromList.getUsername().equals(username)) return userFromList;
         }
         LOG.error("USER NOT FOUND! returned null");
-        return null;
+        throw new UserNotFoundException("User by name not found.");
     }
 
     public SessionFactory getSessionFactory() {

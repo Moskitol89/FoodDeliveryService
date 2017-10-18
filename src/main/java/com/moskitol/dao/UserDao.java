@@ -1,5 +1,6 @@
 package com.moskitol.dao;
 
+import com.moskitol.exceptions.UserNotFoundException;
 import com.moskitol.model.User;
 
 import java.util.List;
@@ -9,5 +10,5 @@ public interface UserDao {
     User findById(int id);
     void save(User user);
     void delete(int id);
-    User findUserByUsername(String username);
+    User findUserByUsername(String username) throws UserNotFoundException;
 }
