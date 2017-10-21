@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "SHOPPING_BASKET")
+@Table(name = "cart")
 public class Cart {
     private int id;
     private Order order;
@@ -20,7 +20,7 @@ public class Cart {
     public void setId(int id) {
         this.id = id;
     }
-    @OneToOne(mappedBy = "basket",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "cart",fetch = FetchType.LAZY)
     public Order getOrder() {
         return order;
     }
@@ -28,9 +28,7 @@ public class Cart {
     public void setOrder(Order order) {
         this.order = order;
     }
-//    @ManyToMany
-//    @JoinTable(name = "SHOPPING_BASKET_DETAIL", joinColumns = @JoinColumn(name = "basket_id"), inverseJoinColumns =
-//    @JoinColumn(name = "food_id"))
+
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, orphanRemoval = true)
     public Set<Food> getFoods() {
         return foods;

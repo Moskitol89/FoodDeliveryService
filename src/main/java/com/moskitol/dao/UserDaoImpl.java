@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
         for(User userFromList: findAll()) {
             if (userFromList.getUsername().equals(username)) return userFromList;
         }
-        LOG.error("USER NOT FOUND! returned null");
+        LOG.error("USER NOT FOUND!");
         throw new UserNotFoundException("User by name not found.");
     }
 

@@ -21,6 +21,7 @@
                 </form>
             </li>
         </c:forEach>
+        <p>Total price: ${totalPrice}</p>
             <li>
                 <form method="get" action="${pageContext.request.contextPath}/shop/confirm">
                     <input type="submit" value="confirm">

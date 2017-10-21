@@ -94,7 +94,8 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,
+    fetch = FetchType.EAGER)
     public Set<Order> getOrders() {
         return orders;
     }

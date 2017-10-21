@@ -13,8 +13,6 @@
     <title>all goods</title>
 </head>
 <body>
-    <h3>${msg}</h3>
-    <h2>${username}</h2>
     <a href="${pageContext.request.contextPath}/shop/order">Go to shopping cart</a>
     <h2>All goods</h2>
     <ul>
@@ -25,6 +23,8 @@
                 </form>
             </li>
         </c:forEach>
+        <p>${totalPrice}</p>
+        <h3>${msg}</h3>
     </ul>
 </body>
 </html>

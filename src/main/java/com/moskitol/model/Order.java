@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Table(name = "orders")
 public class Order {
     private int id;
-    private double amount;
     private User user;
-    private Cart basket;
+    private Cart cart;
+    private String deliveryAddress;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +20,7 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
-    @Column(name = "amount")
-    public double getAmount() {
-        return amount;
-    }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
     @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {
@@ -38,22 +31,30 @@ public class Order {
         this.user = user;
     }
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "basket_id")
-    public Cart getBasket() {
-        return basket;
+    @JoinColumn(name = "cart_id")
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setBasket(Cart basket) {
-        this.basket = basket;
+    public void setCart(Cart basket) {
+        this.cart = basket;
+    }
+    @Column(name = "delivery_address")
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String address) {
+        this.deliveryAddress = address;
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", amount=" + amount +
                 ", user=" + user +
-                ", basket=" + basket +
+                ", cart=" + cart +
+                ", address='" + deliveryAddress + '\'' +
                 '}';
     }
 }
