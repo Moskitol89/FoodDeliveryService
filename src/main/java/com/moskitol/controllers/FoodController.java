@@ -73,7 +73,4 @@ public class FoodController {
         return modelAndView;
     }
 
-    //user
-    //order
-
 }

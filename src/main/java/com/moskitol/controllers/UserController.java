@@ -1,7 +1,9 @@
 package com.moskitol.controllers;
 
+import com.moskitol.exceptions.UserNotFoundException;
 import com.moskitol.model.User;
 import com.moskitol.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -70,4 +73,46 @@ public class UserController {
         return modelAndView;
     }
 
+    //user
+    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+    public ModelAndView CurrentUserProfileEdit() {
+        ModelAndView modelAndView = new ModelAndView("currentUserProfileEdit");
+        User user;
+        try {
+            user = USERSERVICE.findUserByUsername(SecurityContextHolder.getContext().
+            getAuthentication().getName());
+        } catch (UserNotFoundException e) {
+            return  errorPageForCatch(e);
+        }
+        modelAndView.addObject("user",user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+    public ModelAndView CurrentUserProfileEditPost(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        User currentUser;
+        try {
+            currentUser = USERSERVICE.findUserByUsername(SecurityContextHolder.getContext().
+            getAuthentication().getName());
+        } catch (UserNotFoundException e) {
+            return  errorPageForCatch(e);
+        }
+        currentUser.setAddress(user.getAddress());
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+        currentUser.setPassword(user.getPassword());
+        currentUser.setPhoneNumber(user.getPhoneNumber());
+        USERSERVICE.save(currentUser);
+        modelAndView.addObject("msg","User successfully edited : " + currentUser.getUsername());
+        return modelAndView;
+    }
+
+    //method for try-catch
+    private ModelAndView errorPageForCatch(Exception e) {
+        ModelAndView modelAndViewFromCatch = new ModelAndView("errors/error");
+        modelAndViewFromCatch.addObject("msg","Please send send this message" +
+                " to the administration : " + e.getMessage() + " " + Arrays.toString(e.getStackTrace()));
+        return modelAndViewFromCatch;
+    }
 }

@@ -11,6 +11,7 @@
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/index.html" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/shop/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/editProfile.html" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <form-login login-page="/login.html"
                     default-target-url="/index"
                     authentication-failure-url="/errors/403.html"/>

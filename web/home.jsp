@@ -13,7 +13,10 @@
 </head>
 <body>
     <h1>Welcome to food delivery service by Moskitol</h1>
+    <h4>${msg}</h4>
+    <security:authorize access="hasRole('ROLE_ANONYMOUS')">
     <a href="${pageContext.request.contextPath}/login">login</a>
+    </security:authorize>
     <br>
     <security:authorize access="hasRole('ROLE_ADMIN')">
         <a href="${pageContext.request.contextPath}/admin/home">for admins</a>
@@ -21,6 +24,14 @@
     <br>
     <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
         <a href="${pageContext.request.contextPath}/shop/all">go to the store</a>
+    </security:authorize>
+    <br>
+    <security:authorize access="hasRole('ROLE_USER')">
+        <a href="${pageContext.request.contextPath}/editProfile">edit your profile</a>
+    </security:authorize>
+    <br>
+    <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+        <a href="${pageContext.request.contextPath}/logout">logout</a>
     </security:authorize>
 
 </body>
