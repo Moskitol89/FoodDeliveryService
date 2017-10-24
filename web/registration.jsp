@@ -12,6 +12,7 @@
     <title>Registration</title>
 </head>
 <body>
+    <h4>${msg}</h4>
     <form:form method="POST" commandName="user" action="/registration/process.html">
         <table>
             <tbody>
@@ -21,7 +22,11 @@
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><form:input path="password"/></td>
+                    <td><input type="password" name="password1"></td>
+                </tr>
+                <tr>
+                    <td>Repeat password:</td>
+                    <td><input type="password" name="password2"></td>
                 </tr>
                 <tr>
                     <td>First name:</td>
@@ -33,7 +38,7 @@
                 </tr>
                 <tr>
                     <td>Phone number:</td>
-                    <td><form:input path="phoneNumber"/></td>
+                    <td><form:input type="tel" path="phoneNumber"/></td>
                 </tr>
                 <tr>
                     <td>Address:</td>

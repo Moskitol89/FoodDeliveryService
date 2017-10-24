@@ -13,11 +13,20 @@
 </head>
 <body>
 <form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/editProfile.html">
+    <h4>${msg}</h4>
     <table>
         <tbody>
         <tr>
-            <td>Password</td>
-            <td><form:input path="password"/></td>
+            <td>Old password</td>
+            <td><input type="password" name="oldPassword"/></td>
+        </tr>
+        <tr>
+            <td>New password:</td>
+            <td><input type="password" name="password1"></td>
+        </tr>
+        <tr>
+            <td>Repeat new password:</td>
+            <td><input type="password" name="password2"></td>
         </tr>
         <tr>
             <td>First name</td>
