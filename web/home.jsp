@@ -10,10 +10,17 @@
 <html>
 <head>
     <title>Home page</title>
+    <style>
+        <%@include file='resources/css/style.css' %>
+    </style>
+    <link href="resources/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Welcome to food delivery service by Moskitol</h1>
+    <div class="header">
+        <h1>Welcome to food delivery service by Moskitol</h1>
+    </div>
     <h4>${msg}</h4>
+    <div class="menu-left">
     <security:authorize access="hasRole('ROLE_ANONYMOUS')">
     <a href="${pageContext.request.contextPath}/login">login</a>
     </security:authorize>
@@ -33,6 +40,6 @@
     <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
         <a href="${pageContext.request.contextPath}/logout">logout</a>
     </security:authorize>
-
+    </div>
 </body>
 </html>

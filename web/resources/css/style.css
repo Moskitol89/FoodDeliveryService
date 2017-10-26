@@ -1,0 +1,25 @@
+.header {
+    width: auto;
+    height: 150px;
+    background-color: white;
+    /*background-color: rgb(82,175,190);*/
+    border: solid 3px rgb(17, 99, 111);
+}
+h1 {
+    padding-left: 300px;
+    /*color: rgb(193,178,147);*/
+    color: rgb(82, 175, 190);
+}
+.menu-left {
+    margin-top: -21px;
+    width: 15%;
+    height:500px;
+    /*background-color: rgb(82, 175, 190);*/
+    background-color: white;
+    border: 3px solid rgb(17, 99, 111);
+    border-top: 0;
+
+}
+h4 {
+    margin-left: 16%;
+}
