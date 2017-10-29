@@ -17,29 +17,30 @@
 </head>
 <body>
     <div class="header">
-        <h1>Welcome to food delivery service by Moskitol</h1>
+        <h1>Welcome to the food delivery service! <br> Created by Moskitol</h1>
     </div>
-    <h4>${msg}</h4>
+
     <div class="menu-left">
     <security:authorize access="hasRole('ROLE_ANONYMOUS')">
-    <a href="${pageContext.request.contextPath}/login">login</a>
+    <a href="${pageContext.request.contextPath}/login">Login</a>
     </security:authorize>
-    <br>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="${pageContext.request.contextPath}/admin/home">for admins</a>
+        <a href="${pageContext.request.contextPath}/admin/home">For admins</a>
     </security:authorize>
-    <br>
     <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-        <a href="${pageContext.request.contextPath}/shop/all">go to the store</a>
+        <a href="${pageContext.request.contextPath}/shop/all">Go to the store</a>
     </security:authorize>
-    <br>
     <security:authorize access="hasRole('ROLE_USER')">
-        <a href="${pageContext.request.contextPath}/editProfile">edit your profile</a>
+        <a href="${pageContext.request.contextPath}/editProfile">Edit your profile</a>
     </security:authorize>
-    <br>
     <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-        <a href="${pageContext.request.contextPath}/logout">logout</a>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </security:authorize>
     </div>
+    <div class="msg">
+        <h4>${msg} Text for css</h4>
+    </div>
+    <div class="text">SOKDOSPKDopsakdposakdpoadkospdkadpkoadkopsakdaopdakowkdaowdkaodkaowdaw<br>
+        saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsadasdasdd</div>
 </body>
 </html>
