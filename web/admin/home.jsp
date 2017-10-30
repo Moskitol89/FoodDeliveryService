@@ -18,5 +18,7 @@
     <a href="${pageContext.request.contextPath}/admin/add">add new food</a>
     <br>
     <a href="${pageContext.request.contextPath}/admin/userList">show list of users</a>
+    <br>
+    <a href="${pageContext.request.contextPath}/admin/uploadFile">Upload picture</a>
   </body>
 </html>

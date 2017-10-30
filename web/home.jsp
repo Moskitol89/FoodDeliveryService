@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Welcome to the food delivery service! <br> Created by Moskitol</h1>
+        <h1>Welcome to the food delivery service! <br> Created by Moskitol.</h1>
     </div>
 
     <div class="menu-left">
@@ -36,11 +36,13 @@
     <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
         <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </security:authorize>
+    <security:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="${pageContext.request.contextPath}/admin/uploadFile">Upload picture</a>
+    </security:authorize>
     </div>
     <div class="msg">
-        <h4>${msg} Text for css</h4>
+        <h4>${msg}</h4>
     </div>
-    <div class="text">SOKDOSPKDopsakdposakdpoadkospdkadpkoadkopsakdaopdakowkdaowdkaodkaowdaw<br>
-        saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsadasdasdd</div>
+    <div class="text"></div>
 </body>
 </html>
