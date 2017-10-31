@@ -11,6 +11,8 @@ public class Food {
     private String name;
     private float cost;
     private Cart cart;
+    private String imageTitle;
+    private String description;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -36,6 +38,22 @@ public class Food {
 
     public void setCost(float cost) {
         this.cost = cost;
+    }
+    @Column(name = "image_title")
+    public String getImageTitle() {
+        return imageTitle;
+    }
+
+    public void setImageTitle(String imageTitle) {
+        this.imageTitle = imageTitle;
+    }
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
