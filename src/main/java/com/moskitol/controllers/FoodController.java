@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -49,10 +50,15 @@ public class FoodController {
     }
 
     @RequestMapping(value = "/admin/add/process")
-    public ModelAndView addFood(@ModelAttribute Food food, @RequestParam Map<String, String> map) {
+    public ModelAndView addFood(MultipartHttpServletRequest request, @ModelAttribute Food food) {
         ModelAndView modelAndView = new ModelAndView("admin/home");
+
+        // Message - "message", image title - "imageTitle"
+        Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
+        food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
         FOODSERVICE.save(food);
-        modelAndView.addObject("msg", "Food was successfully added : " + food.getName());
+        modelAndView.addObject("msg", "Food was successfully added : " + food.getName() +
+        ". <br> About file: " + mapWithMsgAndImgTitle.get("message")) ;
         return modelAndView;
     }
 
@@ -69,8 +75,30 @@ public class FoodController {
                                                @ModelAttribute Food food, @PathVariable Integer id) {
 
         ModelAndView modelAndView = new ModelAndView("admin/home");
-        String msgAboutFile;
 
+
+        // Message - "message", image title - "imageTitle"
+        Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
+
+        food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
+        FOODSERVICE.save(food);
+        modelAndView.addObject("msg", "Food was successfully edit. id:" + id + " . <br> "
+                + "About file: " + mapWithMsgAndImgTitle.get("message"));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/deleteFood/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteFood(@PathVariable Integer id) {
+        ModelAndView modelAndView = new ModelAndView("admin/home");
+        String deletedFoodName = FOODSERVICE.findById(id).getName();
+        FOODSERVICE.delete(id);
+        modelAndView.addObject("msg", "Food was successfully deleted: " + deletedFoodName);
+        return modelAndView;
+    }
+    //saving the picture not to the server, but to the web resources, you may have to change the implementation.
+    private Map<String, String> fileUpload(MultipartHttpServletRequest request) {
+        String msgAboutFile;
+        Map<String,String> map = new HashMap<String, String>();
         //<input type="file" name="file" />
         MultipartFile requestFile = request.getFile("file");
 
@@ -93,20 +121,8 @@ public class FoodController {
         } else {
             msgAboutFile = "file was empty.";
         }
-        food.setImageTitle(requestFile.getOriginalFilename());
-        FOODSERVICE.save(food);
-        modelAndView.addObject("msg", "Food was successfully edit. id:" + id + " . <br> "
-                + "About file: " + msgAboutFile);
-        return modelAndView;
+        map.put("message",msgAboutFile);
+        map.put("imageTitle",requestFile.getOriginalFilename());
+        return map;
     }
-
-    @RequestMapping(value = "/admin/deleteFood/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteFood(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("admin/home");
-        String deletedFoodName = FOODSERVICE.findById(id).getName();
-        FOODSERVICE.delete(id);
-        modelAndView.addObject("msg", "Food was successfully deleted: " + deletedFoodName);
-        return modelAndView;
-    }
-
 }
