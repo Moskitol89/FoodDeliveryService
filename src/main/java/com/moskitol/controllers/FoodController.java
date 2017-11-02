@@ -56,6 +56,7 @@ public class FoodController {
         // Message - "message", image title - "imageTitle"
         Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
         food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
+        food.setDescription(descriptionToHtmlFormat(food.getDescription()));
         FOODSERVICE.save(food);
         modelAndView.addObject("msg", "Food was successfully added : " + food.getName() +
         ". <br> About file: " + mapWithMsgAndImgTitle.get("message")) ;
@@ -81,6 +82,9 @@ public class FoodController {
         Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
 
         food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
+        String description = descriptionToHtmlFormat(food.getDescription());
+
+        food.setDescription(description);
         FOODSERVICE.save(food);
         modelAndView.addObject("msg", "Food was successfully edit. id:" + id + " . <br> "
                 + "About file: " + mapWithMsgAndImgTitle.get("message"));
@@ -99,13 +103,14 @@ public class FoodController {
     private Map<String, String> fileUpload(MultipartHttpServletRequest request) {
         String msgAboutFile;
         Map<String,String> map = new HashMap<String, String>();
+
         //<input type="file" name="file" />
         MultipartFile requestFile = request.getFile("file");
 
         if (!requestFile.isEmpty()) {
             try {
                 String pathForUpload = request.getSession().getServletContext().getRealPath("/web/");
-                pathForUpload = pathForUpload.substring(0,pathForUpload.indexOf("out")) + "web/resources/css/images/";
+                pathForUpload = pathForUpload.substring(0,pathForUpload.indexOf("out")) + "web/resources/images/";
 
                 File fileNew = new File(pathForUpload, requestFile.getOriginalFilename());
 
@@ -124,5 +129,16 @@ public class FoodController {
         map.put("message",msgAboutFile);
         map.put("imageTitle",requestFile.getOriginalFilename());
         return map;
+    }
+
+    //just replace \r\n for windows and \n for linux to <br>
+    private String descriptionToHtmlFormat(String foodDescription) {
+        String htmlDescription = foodDescription;
+        if(htmlDescription.contains("\r\n")) {
+            htmlDescription = htmlDescription.replaceAll("\r\n","<br>");
+        } else if(htmlDescription.contains("\n")) {
+            htmlDescription = htmlDescription.replaceAll("\n","<br>");
+        }
+        return htmlDescription;
     }
 }

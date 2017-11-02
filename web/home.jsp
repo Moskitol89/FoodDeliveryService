@@ -36,9 +36,6 @@
     <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
         <a href="${pageContext.request.contextPath}/logout">Logout</a>
     </security:authorize>
-    <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="${pageContext.request.contextPath}/admin/uploadFile">Upload picture</a>
-    </security:authorize>
     </div>
     <div class="msg">
         <h4>${msg}</h4>

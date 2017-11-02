@@ -17,7 +17,9 @@
     <h2>All goods</h2>
     <ul>
         <c:forEach var="food" items="${foodList}">
-            <li>${food.name} - price: ${food.cost}
+            <li>${food.name} - price: ${food.cost} <br>
+                <img src="/resources/images/${food.imageTitle}">
+                <p>${food.description}</p>
                 <form method="post" action="${pageContext.request.contextPath}/shop/all">
                     <button type="submit" value="${food.id}" name="foodId">add to cart</button>
                 </form>
