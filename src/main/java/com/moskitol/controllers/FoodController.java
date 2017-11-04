@@ -55,7 +55,7 @@ public class FoodController {
 
         // Message - "message", image title - "imageTitle"
         Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
-        food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
+
         food.setDescription(descriptionToHtmlFormat(food.getDescription()));
         FOODSERVICE.save(food);
         modelAndView.addObject("msg", "Food was successfully added : " + food.getName() +
@@ -80,10 +80,13 @@ public class FoodController {
 
         // Message - "message", image title - "imageTitle"
         Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
-
-        food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
+        System.out.println(mapWithMsgAndImgTitle.get("imageTitle"));
+        if(!mapWithMsgAndImgTitle.get("imageTitle").equals("")) {
+            food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
+        } else {
+            food.setImageTitle(FOODSERVICE.findById(id).getImageTitle());
+        }
         String description = descriptionToHtmlFormat(food.getDescription());
-
         food.setDescription(description);
         FOODSERVICE.save(food);
         modelAndView.addObject("msg", "Food was successfully edit. id:" + id + " . <br> "

@@ -19,5 +19,6 @@
     <br>
     <a href="${pageContext.request.contextPath}/admin/userList">show list of users</a>
     <br>
+    <a href="${pageContext.request.contextPath}/index">home</a>
   </body>
 </html>
