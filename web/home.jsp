@@ -17,7 +17,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>Welcome to the food delivery service! <br> Created by Moskitol.</h1>
+        <h1>
+            Welcome to the food delivery service! <br> Created by Moskitol.</h1>
     </div>
 
     <div class="menu-left">
@@ -38,7 +39,7 @@
     </security:authorize>
     </div>
     <div class="msg">
-        <h4>${msg}</h4>
+        <h4 style="text-align: center">${msg}</h4>
     </div>
     <div class="text"></div>
 </body>

@@ -80,7 +80,6 @@ public class FoodController {
 
         // Message - "message", image title - "imageTitle"
         Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
-        System.out.println(mapWithMsgAndImgTitle.get("imageTitle"));
         if(!mapWithMsgAndImgTitle.get("imageTitle").equals("")) {
             food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
         } else {
