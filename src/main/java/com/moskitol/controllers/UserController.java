@@ -68,11 +68,15 @@ public class UserController {
         user.setRole("ROLE_USER");
         user.setEnabled(true);
         //if passwords fields do not match
-        if(map.get("password1").equals(map.get("password2"))) user.setPassword(map.get("password1"));
+        if(map.get("password1").equals(map.get("password2")) && map.get("password1").length() > 5
+                && user.getUsername().length() > 4){
+            user.setPassword(map.get("password1"));
+        }
         else {
             ModelAndView modelPasswordsDoNotMatch = new ModelAndView("registration");
-            modelPasswordsDoNotMatch.addObject("msg","passwords do not match," +
-                    " please, try again.");
+            modelPasswordsDoNotMatch.addObject("msg","Please check the input data. Passwords must match," +
+                    " the minimum password length is 6 characters, and the user name is 5." +
+                    " Please, try again.");
             return modelPasswordsDoNotMatch;
         }
         USERSERVICE.save(user);
