@@ -113,7 +113,8 @@ public class UserController {
         if(!currentUser.getPassword().equals(map.get("oldPassword")) ||
                 (!map.get("password1").equals(map.get("password2"))) ||
                 (map.get("password1").equals(currentUser.getPassword())
-                        || map.get("password2").equals(currentUser.getPassword()))) {
+                        || map.get("password2").equals(currentUser.getPassword()))
+                || map.get("password1").equals("")) {
             ModelAndView modelPasswordsProblem = new ModelAndView("currentUserProfileEdit");
             modelPasswordsProblem.addObject("msg","Old or new passwords do not match," +
                     "or old password and new equals, please, try again.");

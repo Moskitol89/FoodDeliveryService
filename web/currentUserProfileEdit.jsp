@@ -10,45 +10,57 @@
 <html>
 <head>
     <title>user edit</title>
+    <style>
+        <%@include file="resources/css/style.css"%>
+        <%@include file="resources/css/registration.css"%>
+    </style>
 </head>
 <body>
+<div class="header">
+    <h1>Login page</h1>
+</div>
+<div class="menu-left">
+    <a href="${pageContext.request.contextPath}/index">Main page</a>
+</div>
+<div class="msg">
+    <h4 style="text-align: center">${msg}</h4>
+</div>
+<div class="container">
 <form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/editProfile.html">
-    <h4>${msg}</h4>
     <table>
         <tbody>
         <tr>
-            <td>Old password</td>
-            <td><input type="password" name="oldPassword"/></td>
+            <td class="form-title">Old password</td>
+            <td><input class="form-field" type="password" name="oldPassword"/></td>
         </tr>
         <tr>
-            <td>New password:</td>
-            <td><input type="password" name="password1"></td>
+            <td class="form-title">New password:</td>
+            <td><input class="form-field" type="password" name="password1"></td>
         </tr>
         <tr>
-            <td>Repeat new password:</td>
-            <td><input type="password" name="password2"></td>
+            <td class="form-title">Repeat new password:</td>
+            <td><input class="form-field" type="password" name="password2"></td>
         </tr>
         <tr>
-            <td>First name</td>
-            <td><form:input path="firstName"/></td>
+            <td class="form-title">First name</td>
+            <td><form:input class="form-field" path="firstName"/></td>
         </tr>
         <tr>
-            <td>Last name</td>
-            <td><form:input path="lastName"/></td>
+            <td class="form-title">Last name</td>
+            <td><form:input class="form-field" path="lastName"/></td>
         </tr>
         <tr>
-            <td>Phone number</td>
-            <td><form:input path="phoneNumber"/></td>
+            <td class="form-title">Phone number</td>
+            <td><form:input class="form-field" path="phoneNumber"/></td>
         </tr>
         <tr>
-            <td>Address</td>
-            <td><form:input path="address"/></td>
+            <td class="form-title">Address</td>
+            <td><form:input class="form-field" path="address"/></td>
         </tr>
-        <td><input type="submit" value="Edit" /></td>
+        <td><input class="submit-button" type="submit" value="Edit" /></td>
         </tbody>
     </table>
 </form:form>
-
-<p><a href="${pageContext.request.contextPath}/index">home</a></p>
+</div>
 </body>
 </html>
