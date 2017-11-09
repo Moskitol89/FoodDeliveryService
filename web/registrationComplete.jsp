@@ -9,9 +9,21 @@
 <html>
 <head>
     <title>Done!</title>
+    <style>
+        <%@include file="resources/css/style.css"%>
+    </style>
 </head>
 <body>
-    <h3>${msg}</h3>
-    <a href="${pageContext.request.contextPath}/login">go to login page</a>
+<div class="header">
+    <h1>
+        Welcome to the food delivery service! <br> Created by Moskitol.</h1>
+</div>
+
+<div class="menu-left">
+    <a href="${pageContext.request.contextPath}/login">Login page</a>
+</div>
+<div class="msg">
+    <h3 style="text-align: center">${msg}</h3>
+</div>
 </body>
 </html>

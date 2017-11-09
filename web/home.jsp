@@ -13,7 +13,6 @@
     <style>
         <%@include file='resources/css/style.css' %>
     </style>
-    <link href="resources/css/style.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="header">

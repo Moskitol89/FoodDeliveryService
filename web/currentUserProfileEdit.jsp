@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="header">
-    <h1>Login page</h1>
+    <h1>Your profile edit page</h1>
 </div>
 <div class="menu-left">
     <a href="${pageContext.request.contextPath}/index">Main page</a>

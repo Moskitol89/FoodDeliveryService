@@ -10,23 +10,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>all goods</title>
+    <title>All goods</title>
+    <style>
+        <%@include file="../resources/css/style.css"%>
+        <%@include file="../resources/css/allGoods.css"%>
+    </style>
 </head>
 <body>
+<div class="header">
+    <h1>
+        Welcome to the food delivery service! <br> Created by Moskitol.</h1>
+</div>
+
+<div class="menu-left">
     <a href="${pageContext.request.contextPath}/shop/order">Go to shopping cart</a>
-    <h2>All goods</h2>
+</div>
+<div class="msg">
+    <h3 style="text-align: center">${msg}</h3>
+</div>
+<div class="allGoods">
     <ul>
         <c:forEach var="food" items="${foodList}">
-            <li>${food.name} - price: ${food.cost} <br>
+            <li>
                 <img src="/resources/images/${food.imageTitle}">
-                <p>${food.description}</p>
+                <p class="desc">${food.description}</p>
+                <p>${food.name} - price: ${food.cost} </p>
                 <form method="post" action="${pageContext.request.contextPath}/shop/all">
-                    <button type="submit" value="${food.id}" name="foodId">add to cart</button>
+                    <button class="submit-button" type="submit" value="${food.id}" name="foodId">add to cart</button>
                 </form>
             </li>
         </c:forEach>
         <p>${totalPrice}</p>
-        <h3>${msg}</h3>
     </ul>
+</div>
 </body>
 </html>
