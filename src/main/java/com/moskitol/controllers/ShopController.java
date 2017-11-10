@@ -52,14 +52,15 @@ public class ShopController {
     public ModelAndView addToCart(HttpSession session, @RequestParam String foodId) {
         ModelAndView modelAndView = new ModelAndView("shop/allGoods");
         Cart cart = (Cart)session.getAttribute("cart");
-        cart.addFood(FOODSERVICE.findById(Integer.parseInt(foodId)));
-        modelAndView.addObject("msg", cart.getFoods());
+        Food foodToCart = FOODSERVICE.findById(Integer.parseInt(foodId));
+        cart.addFood(foodToCart);
         List<Food> foodList = FOODSERVICE.findAll();
         float totalPrice = 0;
         for(Food food : cart.getFoods()) {
             totalPrice += food.getCost();
         }
-        modelAndView.addObject("totalPrice","Total price: " + totalPrice);
+        modelAndView.addObject("msg",foodToCart.getName() +
+                " added to cart. Total price: " + totalPrice);
         modelAndView.addObject("foodList", foodList);
         return modelAndView;
     }

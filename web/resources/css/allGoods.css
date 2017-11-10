@@ -1,13 +1,11 @@
-.allGoods {
-    float: left;
-}
 ul {
     text-align: center;
 }
 
 li {
-    margin: 50px;
+    margin: 40px;
     display: inline-block;
+    vertical-align: top;
 }
 
 img {

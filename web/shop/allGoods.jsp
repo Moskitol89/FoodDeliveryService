@@ -15,6 +15,9 @@
         <%@include file="../resources/css/style.css"%>
         <%@include file="../resources/css/allGoods.css"%>
     </style>
+    <script
+           type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.2.1/jquery.min.js">
+    </script>
 </head>
 <body>
 <div class="header">
@@ -24,11 +27,11 @@
 
 <div class="menu-left">
     <a href="${pageContext.request.contextPath}/shop/order">Go to shopping cart</a>
+    <a href="${pageContext.request.contextPath}/index">Main page</a>
 </div>
 <div class="msg">
     <h3 style="text-align: center">${msg}</h3>
 </div>
-<div class="allGoods">
     <ul>
         <c:forEach var="food" items="${foodList}">
             <li>
@@ -40,8 +43,18 @@
                 </form>
             </li>
         </c:forEach>
-        <p>${totalPrice}</p>
     </ul>
-</div>
+<script>
+    $(document).ready(function () {
+        $('img').hover(
+            function () {
+                $(this).fadeIn(300);
+            },
+            function () {
+                $(this).fadeOut(300)
+            }
+        );
+    });
+</script>
 </body>
 </html>
