@@ -1,3 +1,4 @@
+<%@ page import="org.webjars.WebJarAssetLocator" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
@@ -17,6 +18,7 @@
     </style>
     <script
            type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.2.1/jquery.min.js">
+
     </script>
 </head>
 <body>
@@ -36,8 +38,8 @@
         <c:forEach var="food" items="${foodList}">
             <li>
                 <img src="/resources/images/${food.imageTitle}">
-                <p class="desc">${food.description}</p>
-                <p>${food.name} - price: ${food.cost} </p>
+                <div class="desc">${food.description}</div>
+                <p class="name">${food.name} - price: ${food.cost} </p>
                 <form method="post" action="${pageContext.request.contextPath}/shop/all">
                     <button class="submit-button" type="submit" value="${food.id}" name="foodId">add to cart</button>
                 </form>
@@ -45,16 +47,16 @@
         </c:forEach>
     </ul>
 <script>
-    $(document).ready(function () {
-        $('img').hover(
-            function () {
-                $(this).fadeIn(300);
-            },
-            function () {
-                $(this).fadeOut(300)
-            }
-        );
-    });
+//    $(document).ready(function () {
+//        $('img').hover(
+//            function () {
+//                $(this).siblings(".desc").fadeIn(300);
+//            },
+//            function () {
+//                $(this).siblings(".desc").fadeOut(300)
+//            }
+//        );
+//    });
 </script>
 </body>
 </html>
