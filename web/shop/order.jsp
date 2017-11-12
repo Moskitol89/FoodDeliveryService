@@ -10,23 +10,39 @@
 <html>
 <head>
     <title>Your order</title>
+    <style>
+        <%@include file="../resources/css/style.css"%>
+        <%@include file="../resources/css/button.css"%>
+    </style>
 </head>
 <body>
-    <h3>${msg}</h3>
+<div class="header">
+    <h1>
+        Welcome to the food delivery service! <br> Created by Moskitol.</h1>
+</div>
+
+<div class="menu-left">
+    <a href="${pageContext.request.contextPath}/index">Main page</a>
+</div>
+<div class="msg">
+    <h4 style="text-align: center">${msg}</h4>
+</div>
+<div class="container" style="float: left;padding-top: 1%;padding-left: 5%;">
     <ul>
         <c:forEach items="${foodSet}" var="food">
-            <li>${food.name}
+            <li>${food.name} - ${food.cost}
                 <form method="post" action="${pageContext.request.contextPath}/shop/order">
-                    <button name="foodId" value="${food.id}" type="submit">remove</button>
+                    <button name="foodId" class="submit-button" value="${food.id}" type="submit">remove</button>
                 </form>
             </li>
         </c:forEach>
         <p>Total price: ${totalPrice}</p>
             <li>
                 <form method="get" action="${pageContext.request.contextPath}/shop/confirm">
-                    <input type="submit" value="confirm">
+                    <input type="submit" class="submit-button" value="confirm">
                 </form>
             </li>
     </ul>
+</div>
 </body>
 </html>

@@ -10,8 +10,20 @@
 <html>
 <head>
     <title>confirm purchase</title>
+    <style>
+        <%@include file="../resources/css/style.css"%>
+    </style>
 </head>
 <body>
+<div class="header">
+    <h1>
+        Welcome to the food delivery service! <br> Created by Moskitol.</h1>
+</div>
+
+<div class="menu-left">
+    <a href="${pageContext.request.contextPath}/index">Main page</a>
+</div>
+<div class="container">
     <ul>
         <c:forEach var="foodFromCart" items="${foodSet}">
             <li>${foodFromCart.name} - price: ${foodFromCart.cost}</li>
@@ -32,5 +44,6 @@
         </form>
         </li>
     </ul>
+</div>
 </body>
 </html>
