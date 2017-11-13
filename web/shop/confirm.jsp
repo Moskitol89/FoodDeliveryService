@@ -12,6 +12,7 @@
     <title>confirm purchase</title>
     <style>
         <%@include file="../resources/css/style.css"%>
+        <%@include file="../resources/css/registration.css"%>
     </style>
 </head>
 <body>
@@ -22,6 +23,7 @@
 
 <div class="menu-left">
     <a href="${pageContext.request.contextPath}/index">Main page</a>
+    <a href="${pageContext.request.contextPath}/shop/all">Go to the store</a>
 </div>
 <div class="container">
     <ul>
@@ -29,18 +31,18 @@
             <li>${foodFromCart.name} - price: ${foodFromCart.cost}</li>
         </c:forEach>
         <br>
-        <li>Total price : ${totalPrice}</li>
-        <li>Your name : ${user.firstName}</li>
-        <li>Your phone number : ${user.phoneNumber}</li>
+        <li class="form-title">Total price : ${totalPrice}</li>
+        <li class="form-title">Your name : ${user.firstName}</li>
+        <li class="form-title">Your phone number : ${user.phoneNumber}</li>
         <li>
         <form method="post" action="${pageContext.request.contextPath}/shop/confirm">
             Your address for deliver :
             <br>
             <label>
-                <textarea rows="5" cols="45" name="addressTextArea">${user.address}</textarea>
+                <textarea class="form-title form-field" rows="5" cols="45" name="addressTextArea">${user.address}</textarea>
             </label>
             <br>
-            <input type="submit" value="confirm">
+            <input class="submit-button" style="left: 200px" type="submit" value="confirm">
         </form>
         </li>
     </ul>

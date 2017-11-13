@@ -9,8 +9,22 @@
 <html>
 <head>
     <title>Confirmed</title>
+    <style>
+        <%@include file="../resources/css/style.css"%>
+    </style>
 </head>
 <body>
-    <h2>${msg}</h2>
+<div class="header">
+    <h1>
+        Welcome to the food delivery service! <br> Created by Moskitol.</h1>
+</div>
+
+<div class="menu-left">
+    <a href="${pageContext.request.contextPath}/index">Main page</a>
+    <a href="${pageContext.request.contextPath}/shop/all">Go to the store</a>
+</div>
+<div class="msg">
+    <h3 style="text-align: center">${msg}</h3>
+</div>
 </body>
 </html>

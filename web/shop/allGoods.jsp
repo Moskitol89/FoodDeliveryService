@@ -28,8 +28,8 @@
 </div>
 
 <div class="menu-left">
-    <a href="${pageContext.request.contextPath}/shop/order">Go to shopping cart</a>
     <a href="${pageContext.request.contextPath}/index">Main page</a>
+    <a href="${pageContext.request.contextPath}/shop/order">Go to shopping cart</a>
 </div>
 <div class="msg">
     <h3 style="text-align: center">${msg}</h3>
