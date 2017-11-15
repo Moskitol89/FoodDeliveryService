@@ -18,7 +18,6 @@
     </style>
     <script
            type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.2.1/jquery.min.js">
-
     </script>
 </head>
 <body>
@@ -36,7 +35,7 @@
 </div>
     <ul>
         <c:forEach var="food" items="${foodList}">
-            <li>
+            <li class="hide">
                 <img src="/resources/images/${food.imageTitle}">
                 <div class="desc">${food.description}</div>
                 <p class="name">${food.name} - price: ${food.cost} </p>
@@ -47,16 +46,11 @@
         </c:forEach>
     </ul>
 <script>
-//    $(document).ready(function () {
-//        $('img').hover(
-//            function () {
-//                $(this).siblings(".desc").fadeIn(300);
-//            },
-//            function () {
-//                $(this).siblings(".desc").fadeOut(300)
-//            }
-//        );
-//    });
+    $(document).ready(function(){
+        $("li:eq(0)").show("fast", function () {
+            $(this).next().show("fast", arguments.callee);
+        });
+    });
 </script>
 </body>
 </html>

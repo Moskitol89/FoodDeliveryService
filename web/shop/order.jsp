@@ -14,6 +14,9 @@
         <%@include file="../resources/css/style.css"%>
         <%@include file="../resources/css/button.css"%>
     </style>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.2.1/jquery.min.js">
+    </script>
 </head>
 <body>
 <div class="header">
@@ -23,6 +26,7 @@
 
 <div class="menu-left">
     <a href="${pageContext.request.contextPath}/index">Main page</a>
+    <a href="${pageContext.request.contextPath}/shop/all">Go to the store</a>
 </div>
 <div class="msg">
     <h4 style="text-align: center">${msg}</h4>
@@ -30,19 +34,26 @@
 <div class="container" style="float: left;padding-top: 1%;padding-left: 5%;">
     <ul>
         <c:forEach items="${foodSet}" var="food">
-            <li>${food.name} - ${food.cost}
+            <li style="display: none">${food.name} - ${food.cost}
                 <form method="post" action="${pageContext.request.contextPath}/shop/order">
                     <button name="foodId" class="submit-button" value="${food.id}" type="submit">remove</button>
                 </form>
             </li>
         </c:forEach>
         <p>Total price: ${totalPrice}</p>
-            <li>
+            <li style="display: none">
                 <form method="get" action="${pageContext.request.contextPath}/shop/confirm">
                     <input type="submit" class="submit-button" value="confirm">
                 </form>
             </li>
     </ul>
 </div>
+<script>
+    $(document).ready(function() {
+        $("li:eq(0)").show("fast",function () {
+            $(this).next().show("fast",arguments.callee);
+        });
+    });
+</script>
 </body>
 </html>
