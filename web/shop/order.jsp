@@ -40,6 +40,7 @@
                 </form>
             </li>
         </c:forEach>
+        <hr>
         <p>Total price: ${totalPrice}</p>
             <li style="display: none">
                 <form method="get" action="${pageContext.request.contextPath}/shop/confirm">

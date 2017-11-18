@@ -3,15 +3,18 @@ li {
     margin: 40px;
     display: inline-block;
     vertical-align: top;
+    background-color: rgb(235,235,235);
+    border: 2px solid rgb(17, 99, 111);
 }
 
 .hide {
     display: none;
 }
 img {
-    width: 200px;
+    width: 202px;
     height: 200px;
-    border: 2px solid rgb(17, 99, 111);
+    border: 0 solid rgb(17, 99, 111);
+    border-bottom-width: 2px;
 }
 
 .desc {
@@ -25,12 +28,12 @@ img {
 .submit-button {
     margin-left: 100px;
     border: 0px solid #000000;
-    background: #ebebeb;
+    background: rgb(82, 175, 190);
     background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#ebebeb));
-    background: -webkit-linear-gradient(top, #ebebeb, #ebebeb);
-    background: -moz-linear-gradient(top, #ebebeb, #ebebeb);
-    background: -ms-linear-gradient(top, #ebebeb, #ebebeb);
-    background: -o-linear-gradient(top, #ebebeb, #ebebeb);
+    background: -webkit-linear-gradient(top, rgb(82, 175, 190), rgb(82, 175, 190));
+    background: -moz-linear-gradient(top, rgb(82, 175, 190), rgb(82, 175, 190));
+    background: -ms-linear-gradient(top, rgb(82, 175, 190), rgb(82, 175, 190));
+    background: -o-linear-gradient(top, rgb(82, 175, 190), rgb(82, 175, 190));
     background-image: -ms-linear-gradient(top, #ebebeb 0%, #ebebeb 100%);
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
