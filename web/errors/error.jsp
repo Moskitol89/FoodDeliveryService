@@ -8,10 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>General error</title>
+    <title>General Error</title>
+    <style>
+        <%@include file='/resources/css/style.css' %>
+    </style>
 </head>
 <body>
-<h2>${msg}</h2>
-<a href="${pageContext.request.contextPath}/index">go to main page</a>
+<div class="header">
+    <h1>
+       General error.
+    </h1>
+</div>
+
+<div class="menu-left">
+    <a href="${pageContext.request.contextPath}/index">Main page</a>
+</div>
+<div class="msg">
+    <h4 style="text-align: center">${msg}</h4>
+</div>
+<div class="text"></div>
 </body>
 </html>

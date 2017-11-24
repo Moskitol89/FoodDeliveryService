@@ -10,7 +10,7 @@ public class ErrorController {
     @RequestMapping(value = "/errors/403.html")
     public ModelAndView error403(){
         ModelAndView modelAndView = new ModelAndView("/errors/error403");
-        modelAndView.addObject("msg","Sorry, access denied. Only for admins");
+        modelAndView.addObject("msg","Sorry, access denied or invalid login/password.");
         return modelAndView;
     }
 }
