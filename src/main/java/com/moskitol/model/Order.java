@@ -30,7 +30,7 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
     public Cart getCart() {
         return cart;

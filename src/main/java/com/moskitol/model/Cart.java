@@ -29,7 +29,7 @@ public class Cart {
         this.order = order;
     }
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, orphanRemoval = true)
     public Set<Food> getFoods() {
         return foods;
     }

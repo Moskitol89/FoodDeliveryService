@@ -1,6 +1,7 @@
 package com.moskitol.controllers;
 
 import com.moskitol.exceptions.UserNotFoundException;
+import com.moskitol.model.Order;
 import com.moskitol.model.User;
 import com.moskitol.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -53,6 +55,26 @@ public class UserController {
         USERSERVICE.delete(id);
         modelAndView.addObject("msg","User was successfully deleted: " + deletedUsername);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/getOrders", method = RequestMethod.POST)
+    public ModelAndView getOrderByUsername(@RequestParam String username) {
+        ModelAndView modelAndView = new ModelAndView("admin/orderByUsernameResult");
+        User user;
+        try {
+            user = USERSERVICE.findUserByUsername(username);
+        }
+        catch (UserNotFoundException e) {
+            return errorPageForCatch(e);
+        }
+        Set<Order> orderList = user.getOrders();
+        modelAndView.addObject("orderList", orderList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
+    public ModelAndView getOrderByUsername() {
+        return new ModelAndView("admin/orderByUsername");
     }
     //registration
     @RequestMapping(value = "/registration")
