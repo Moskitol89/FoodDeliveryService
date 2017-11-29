@@ -55,7 +55,7 @@ public class FoodController {
 
         // Message - "message", image title - "imageTitle"
         Map<String,String> mapWithMsgAndImgTitle = fileUpload(request);
-
+        food.setImageTitle(mapWithMsgAndImgTitle.get("imageTitle"));
         food.setDescription(descriptionToHtmlFormat(food.getDescription()));
         FOODSERVICE.save(food);
         modelAndView.addObject("msg", "Food was successfully added : " + food.getName() +

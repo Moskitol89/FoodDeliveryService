@@ -9,6 +9,7 @@ import java.util.Set;
 public class Cart {
     private int id;
     private Order order;
+    private String stringsOfFood;
     private Set<Food> foods = new HashSet<Food>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,5 +61,13 @@ public class Cart {
                 ", order=" + order +
                 ", foods=" + foods +
                 '}';
+    }
+    @Column(name = "FOOD_NAME")
+    public String getStringsOfFood() {
+        return stringsOfFood;
+    }
+
+    public void setStringsOfFood(String stringsOfFood) {
+        this.stringsOfFood = stringsOfFood;
     }
 }

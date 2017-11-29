@@ -130,6 +130,12 @@ public class ShopController {
           return errorPageForCatch(e);
         }
         Cart cart = (Cart) session.getAttribute("cart");
+        StringBuilder stringsOfFoodForCart = new StringBuilder();
+
+        for(Food food: cart.getFoods()) {
+            stringsOfFoodForCart.append(food.getName()).append(", ");
+        }
+        cart.setStringsOfFood(stringsOfFoodForCart.toString().trim());
         CARTSERVICE.save(cart);
         Order order = new Order();
         order.setDeliveryAddress(addressTextArea);

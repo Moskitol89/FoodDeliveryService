@@ -16,7 +16,7 @@
         <c:forEach var="order" items="${orderList}">
             <tr>
                 <td>${order.id}</td>
-                <td>${order.cart.foods} </td>
+                <td>${order.cart.stringsOfFood} </td>
             </tr>
         </c:forEach>
     </table>

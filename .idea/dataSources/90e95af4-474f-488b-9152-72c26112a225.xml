@@ -20,140 +20,144 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <key id="12" parent="7" name="PRIMARY">
+    <column id="12" parent="7" name="FOOD_NAME">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="13" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="13" parent="8" name="ID">
+    <column id="14" parent="8" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="14" parent="8" name="CART_ID">
+    <column id="15" parent="8" name="CART_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="15" parent="8" name="NAME">
+    <column id="16" parent="8" name="NAME">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="8" name="COST">
+    <column id="17" parent="8" name="COST">
       <Position>4</Position>
       <DataType>float|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="8" name="IMAGE_TITLE">
+    <column id="18" parent="8" name="IMAGE_TITLE">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="18" parent="8" name="DESCRIPTION">
+    <column id="19" parent="8" name="DESCRIPTION">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="19" parent="8" name="CART_ID">
+    <index id="20" parent="8" name="CART_ID">
       <ColNames>CART_ID</ColNames>
     </index>
-    <key id="20" parent="8" name="PRIMARY">
+    <key id="21" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="21" parent="8" name="food_ibfk_1">
+    <foreign-key id="22" parent="8" name="food_ibfk_1">
       <ColNames>CART_ID</ColNames>
       <RefSchemaName>food_delivery_service</RefSchemaName>
       <RefTableName>cart</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="22" parent="9" name="ID">
+    <column id="23" parent="9" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="23" parent="9" name="USER_ID">
+    <column id="24" parent="9" name="USER_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="24" parent="9" name="CART_ID">
+    <column id="25" parent="9" name="CART_ID">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="25" parent="9" name="DELIVERY_ADDRESS">
+    <column id="26" parent="9" name="DELIVERY_ADDRESS">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="26" parent="9" name="CART_ID">
+    <index id="27" parent="9" name="CART_ID">
       <ColNames>CART_ID</ColNames>
     </index>
-    <index id="27" parent="9" name="USER_ID">
+    <index id="28" parent="9" name="USER_ID">
       <ColNames>USER_ID</ColNames>
     </index>
-    <key id="28" parent="9" name="PRIMARY">
+    <key id="29" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="29" parent="9" name="orders_ibfk_1">
+    <foreign-key id="30" parent="9" name="orders_ibfk_1">
       <ColNames>USER_ID</ColNames>
       <RefSchemaName>food_delivery_service</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="30" parent="9" name="orders_ibfk_2">
+    <foreign-key id="31" parent="9" name="orders_ibfk_2">
       <ColNames>CART_ID</ColNames>
       <RefSchemaName>food_delivery_service</RefSchemaName>
       <RefTableName>cart</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="31" parent="10" name="ID">
+    <column id="32" parent="10" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="32" parent="10" name="USERNAME">
+    <column id="33" parent="10" name="USERNAME">
       <Position>2</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="10" name="PASSWORD">
+    <column id="34" parent="10" name="PASSWORD">
       <Position>3</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="10" name="FIRST_NAME">
+    <column id="35" parent="10" name="FIRST_NAME">
       <Position>4</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="10" name="LAST_NAME">
+    <column id="36" parent="10" name="LAST_NAME">
       <Position>5</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="36" parent="10" name="ENABLED">
+    <column id="37" parent="10" name="ENABLED">
       <Position>6</Position>
       <DataType>tinyint(4)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="37" parent="10" name="ROLE">
+    <column id="38" parent="10" name="ROLE">
       <Position>7</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;ROLE_USER&apos;</DefaultExpression>
     </column>
-    <column id="38" parent="10" name="PHONE_NUMBER">
+    <column id="39" parent="10" name="PHONE_NUMBER">
       <Position>8</Position>
       <DataType>mediumtext|0</DataType>
     </column>
-    <column id="39" parent="10" name="ADDRESS">
+    <column id="40" parent="10" name="ADDRESS">
       <Position>9</Position>
       <DataType>varchar(250)|0</DataType>
     </column>
-    <key id="40" parent="10" name="PRIMARY">
+    <key id="41" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
