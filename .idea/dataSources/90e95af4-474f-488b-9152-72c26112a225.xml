@@ -125,7 +125,7 @@
     </column>
     <column id="34" parent="10" name="PASSWORD">
       <Position>3</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="35" parent="10" name="FIRST_NAME">

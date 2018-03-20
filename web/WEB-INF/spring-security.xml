@@ -6,6 +6,8 @@
                  http://www.springframework.org/schema/security
                  http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <beans:bean name="bcryptEncoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
@@ -21,11 +23,17 @@
 
     <authentication-manager>
         <authentication-provider>
+            <password-encoder ref="bcryptEncoder"/>
             <jdbc-user-service data-source-ref="dataSource"
                                   users-by-username-query=
                                           "SELECT USERNAME,PASSWORD,ENABLED FROM user WHERE USERNAME =?"
                                   authorities-by-username-query="SELECT USERNAME,ROLE FROM user WHERE USERNAME =?"
         />
+        </authentication-provider>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+            </user-service>
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

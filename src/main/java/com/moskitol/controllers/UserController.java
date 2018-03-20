@@ -4,8 +4,11 @@ import com.moskitol.exceptions.UserNotFoundException;
 import com.moskitol.model.Order;
 import com.moskitol.model.User;
 import com.moskitol.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +21,8 @@ import java.util.Set;
 public class UserController {
 
     private final UserService USERSERVICE;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserController(UserService userservice) {
         USERSERVICE = userservice;
@@ -92,7 +97,7 @@ public class UserController {
         //if passwords fields do not match
         if(map.get("password1").equals(map.get("password2")) && map.get("password1").length() > 5
                 && user.getUsername().length() > 4){
-            user.setPassword(map.get("password1"));
+            user.setPassword(bCryptPasswordEncoder.encode(map.get("password1")));
         }
         else {
             ModelAndView modelPasswordsDoNotMatch = new ModelAndView("registration");
