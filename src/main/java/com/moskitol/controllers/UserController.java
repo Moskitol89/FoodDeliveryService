@@ -137,20 +137,20 @@ public class UserController {
         } catch (UserNotFoundException e) {
             return  errorPageForCatch(e);
         }
-        if(!currentUser.getPassword().equals(map.get("oldPassword")) ||
+        if(!bCryptPasswordEncoder.matches(map.get("oldPassword"), currentUser.getPassword()) ||
                 (!map.get("password1").equals(map.get("password2"))) ||
-                (map.get("password1").equals(currentUser.getPassword())
-                        || map.get("password2").equals(currentUser.getPassword()))
-                || map.get("password1").equals("")) {
+                bCryptPasswordEncoder.matches(map.get("password1"), currentUser.getPassword()) ||
+                (map.get("password1").length() < 6)
+                ) {
             ModelAndView modelPasswordsProblem = new ModelAndView("currentUserProfileEdit");
             modelPasswordsProblem.addObject("msg","Old or new passwords do not match," +
-                    "or old password and new equals, please, try again.");
+                    "or old password and new equals, or new passwords length less than 6 please, please try again.");
             return modelPasswordsProblem;
         }
         currentUser.setAddress(user.getAddress());
         currentUser.setFirstName(user.getFirstName());
         currentUser.setLastName(user.getLastName());
-        currentUser.setPassword(map.get("password1"));
+        currentUser.setPassword(bCryptPasswordEncoder.encode(map.get("password1")));
         currentUser.setPhoneNumber(user.getPhoneNumber());
         USERSERVICE.save(currentUser);
         modelAndView.addObject("msg","User successfully edited : " + currentUser.getUsername());
